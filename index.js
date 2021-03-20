@@ -7,6 +7,9 @@ function score_quiz() {
     var results = document.getElementById("results");
     results.style.display = "block";
 
+    if (document.getElementById('iconOptions1').checked) {
+        vampireScore += 20;
+    };
 
     if (document.getElementById('shadowRadio2').checked) {
         vampireScore += 4;
