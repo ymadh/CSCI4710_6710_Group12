@@ -7,9 +7,14 @@ function score_quiz() {
     var results = document.getElementById("results");
     results.style.display = "block";
 
+    // default case
+    var icon = 'human.png';
     if (document.getElementById('iconOptions1').checked) {
-        vampireScore += 20;
-    };
+        icon = 'vampire.jpg';
+    }
+    if (document.getElementById('iconOptions2').checked) {
+        icon = 'human.png';
+    }
 
     if (document.getElementById('shadowRadio2').checked) {
         vampireScore += 4;
