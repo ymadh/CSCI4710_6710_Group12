@@ -29,5 +29,10 @@ function score_quiz() {
     }
 
     console.log(vampireScore);
-    return (vampireScore > 6);
+    if (vampireScore > 6) {
+        document.getElementById('results').innerHTML = firstName + " " + lastName + " is a Vampire!"
+    } else {
+        document.getElementById('results').innerHTML = firstName + " " + lastName + " is not a Vampire!"
+    }
+
 }
