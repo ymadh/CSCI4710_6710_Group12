@@ -45,7 +45,7 @@ function headsOrTails() {
     results.style.display = "block";
 
     randomVampireScore = Math.floor(Math.random() * Math.floor(max))
-    if (vampireScore == 1) {
+    if (randomVampireScore == 1) {
         document.getElementById("results").innerHTML = "is a Vampire!"
     } else {
         document.getElementById("results").innerHTML = "is not a Vampire!"
