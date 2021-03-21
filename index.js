@@ -31,8 +31,10 @@ function score_quiz() {
     console.log(vampireScore);
     if (vampireScore > 6) {
         document.getElementById("results").innerHTML = "is a Vampire!"
+		drawChart('v');
     } else {
         document.getElementById("results").innerHTML = "is not a Vampire!"
+		drawChart('h');
     }
 
 }
@@ -47,7 +49,45 @@ function headsOrTails() {
     randomVampireScore = Math.floor(Math.random() * Math.floor(max))
     if (randomVampireScore == 1) {
         document.getElementById("results").innerHTML = "is a Vampire!"
+		drawChart('v');
     } else {
         document.getElementById("results").innerHTML = "is not a Vampire!"
+		drawChart('h');
     }
 }
+ 	//Google Charts Code:
+	
+	//setup for chart
+	google.charts.load('current', {'packages':['corechart']});
+	//google.charts.setOnLoadCallback(drawChart);
+	//Variables
+	var chart;
+    var data;
+    var options;
+    var humans = 15;
+    var vampires = 10;
+	
+	function drawChart(augment) {
+	
+		if (augment == 'h'){
+			humans += 1;
+		}else{
+			vampires +=1 ;
+		}
+		//create table
+		data = new google.visualization.DataTable();
+		data.addColumn('string', 'Element');
+		data.addColumn('number', 'Number');
+		data.addRows([
+          ['Human', humans],
+          ['Vampire', vampires]
+        ]);
+		
+		options = {'title':'Vampires in the class now:',
+                       'width':500,
+                       'height':400,
+					   'chartArea,left': 100};
+		chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);			   
+	
+	} 

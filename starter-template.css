@@ -9,3 +9,7 @@ body {
 #results {
   display: none;
 }
+
+#chart_div{
+	display: inline-block;
+}
