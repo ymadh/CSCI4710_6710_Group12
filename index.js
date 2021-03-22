@@ -40,18 +40,18 @@ function score_quiz() {
 }
 
 function headsOrTails() {
-    var randomVampireScore = 0;
+    var x = 0;
     var quiz = document.getElementById("quiz");
     quiz.style.display = "none";
     var results = document.getElementById("results");
     results.style.display = "block";
 
-    randomVampireScore = Math.floor(Math.random() * Math.floor(max))
-    if (randomVampireScore == 1) {
-        document.getElementById("results").innerHTML = "is a Vampire!"
+    x = Math.floor(Math.random() * 2);
+    if (x == 0) {
+        document.getElementById("results").innerHTML = "You are a Vampire!"
         drawChart('v');
     } else {
-        document.getElementById("results").innerHTML = "is not a Vampire!"
+        document.getElementById("results").innerHTML = "You are not a Vampire!"
         drawChart('h');
     }
 }
