@@ -3,6 +3,19 @@ function score_quiz() {
 
     var vampireScore = 0;
     var quiz = document.getElementById("quiz");
+    var error = document.getElementById("error");
+
+    if (validate_form() === false) {
+        error.style.display = "block";
+        error.innerHTML = 'Please fill out the entire form';
+        return;
+
+    } else {
+        error.innerHTML = '';
+        error.style.display = "none";
+
+    }
+
     quiz.style.display = "none";
     var results = document.getElementById("results");
     results.style.display = "block";
@@ -28,17 +41,28 @@ function score_quiz() {
         vampireScore += 3;
     }
 
-    console.log(vampireScore);
+
+    var name = document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value;
     if (vampireScore > 6) {
-        document.getElementById("results").innerHTML = "is a Vampire!"
+        document.getElementById("results").innerHTML = name + " is a Vampire!"
         drawChart('v');
     } else {
-        document.getElementById("results").innerHTML = "is not a Vampire!"
+        document.getElementById("results").innerHTML = name + " is not a Vampire!"
         drawChart('h');
     }
 
 }
 
+function validate_form() {
+    if (document.getElementById('firstName').value.length === 0) return false;
+    if (document.getElementById('lastName').value.length === 0) return false;
+    if (!document.getElementById("garlicRadio1").checked && !document.getElementById("garlicRadio2").checked) return false;
+    if (!document.getElementById("complexionRadio1").checked && !document.getElementById("complexionRadio2").checked) return false;
+    if (!document.getElementById("shadowRadio1").checked && !document.getElementById("shadowRadio2").checked) return false;
+    if (!document.getElementById("iconOptions1").checked && !document.getElementById("iconOptions2").checked) return false;
+
+    return true;
+}
 function headsOrTails() {
     var x = 0;
     var quiz = document.getElementById("quiz");
