@@ -1,4 +1,40 @@
-
+var classmateData = [
+    {
+        'name': 'John',
+        'shadow': 0,
+        'galic': 0,
+        'complexion': 1,
+        'icon': 'h',
+    },
+    {
+        'name': 'Lee',
+        'shadow': 1,
+        'galic': 1,
+        'complexion': 1,
+        'icon': 'v',
+    },
+    {
+        'name': 'Emma',
+        'shadow': 0,
+        'galic': 1,
+        'complexion': 0,
+        'icon': 'h',
+    },
+    {
+        'name': 'Ava',
+        'shadow': 1,
+        'galic': 1,
+        'complexion': 0,
+        'icon': 'h'
+    },
+    {
+        'name': 'Alex',
+        'shadow': 1,
+        'galic': 1,
+        'complexion': 1,
+        'icon': 'v'
+    },
+];
 function score_quiz() {
 
     var vampireScore = 0;
@@ -19,30 +55,44 @@ function score_quiz() {
     quiz.style.display = "none";
     var results = document.getElementById("results");
     results.style.display = "block";
+    var newObj = {};
+    newObj.shadow = 0;
+    newObj.name = '';
+    newObj.complexion = 0;
+    newObj.garlic = 0;
 
     // default case
     var icon = "human.png";
     if (document.getElementById("iconOptions1").checked) {
         icon = "vampire.jpg";
+
     }
     if (document.getElementById("iconOptions2").checked) {
         icon = "human.png";
     }
+    newObj.icon = icon;
 
     if (document.getElementById("shadowRadio2").checked) {
         vampireScore += 4;
+        newObj.shadow = 1;
     };
 
     if (document.getElementById("complexionRadio1").checked) {
         vampireScore += 3;
+        newObj.complexion = 1;
     }
 
     if (document.getElementById("garlicRadio1").checked) {
         vampireScore += 3;
+        newObj.garlic = 1;
     }
 
 
     var name = document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value;
+    newObj.name = name;
+    classmateData.push(newObj);
+    insertRow(newObj);
+
     if (vampireScore > 6) {
         document.getElementById("results").innerHTML = name + " is a Vampire!"
         drawChart('v');
@@ -115,5 +165,38 @@ function drawChart(augment) {
     };
     chart = new google.visualization.PieChart(document.getElementById('chart_div'));
     chart.draw(data, options);
+
+}
+
+render_table();
+
+/**
+ * initial render of the table
+ */
+function render_table() {
+
+    for (let i = 0; i < classmateData.length; i++) {
+        insertRow(classmateData[i]);
+    }
+}
+
+/** 
+ * create rows
+ */
+function insertRow(rowObj) {
+    var table = document.getElementById("results_table");
+    let row = table.insertRow(-1);
+
+    let cell1 = row.insertCell(0);
+    let cell2 = row.insertCell(1);
+    let cell3 = row.insertCell(2);
+    let cell4 = row.insertCell(3);
+    let cell5 = row.insertCell(4);
+
+    cell1.innerHTML = rowObj.name;
+    cell2.innerHTML = rowObj.shadow ? 'Shadow' : 'No Shadow';
+    cell3.innerHTML = rowObj.complexion ? 'Pale' : 'Not Pale';
+    cell4.innerHTML = rowObj.garlic ? 'Love Garlic' : 'Hate Garlic';
+    cell5.innerHTML = rowObj.icon === 'v' ? '<img src="vampire.jpg" width="50">' : '<img src="human.png" width="50">';
 
 }

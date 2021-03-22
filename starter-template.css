@@ -6,10 +6,6 @@ body {
   text-align: center;
 }
 
-#results {
-  display: none;
-}
-
 #chart_div {
   display: inline-block;
 }
