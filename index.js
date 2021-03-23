@@ -77,7 +77,8 @@ function score_quiz() {
         newObj.shadow = 1;
     };
 
-    if (document.getElementById("complexionRadio1").checked) {
+    if (document.getElementById("complexion").value == 1) {
+
         vampireScore += 3;
         newObj.complexion = 1;
     }
@@ -107,7 +108,7 @@ function validate_form() {
     if (document.getElementById('firstName').value.length === 0) return false;
     if (document.getElementById('lastName').value.length === 0) return false;
     if (!document.getElementById("garlicRadio1").checked && !document.getElementById("garlicRadio2").checked) return false;
-    if (!document.getElementById("complexionRadio1").checked && !document.getElementById("complexionRadio2").checked) return false;
+    if (!document.getElementById("complexion").selectedIndex === -1) return false;
     if (!document.getElementById("shadowRadio1").checked && !document.getElementById("shadowRadio2").checked) return false;
     if (!document.getElementById("iconOptions1").checked && !document.getElementById("iconOptions2").checked) return false;
 
@@ -120,6 +121,20 @@ function headsOrTails() {
     var results = document.getElementById("results");
     results.style.display = "block";
 
+    var newObj = {};
+    newObj.shadow = 0;
+    newObj.name = '';
+    newObj.complexion = 0;
+    newObj.garlic = 0;
+
+    for (const property in newObj) {
+        let rand = Math.floor(Math.random() * 2);
+        newObj.property = rand;
+    }
+
+    newObj.name = 'Random';
+
+    insertRow(newObj);
     x = Math.floor(Math.random() * 2);
     if (x == 0) {
         document.getElementById("results").innerHTML = "You are a Vampire!"
@@ -128,6 +143,8 @@ function headsOrTails() {
         document.getElementById("results").innerHTML = "You are not a Vampire!"
         drawChart('h');
     }
+
+
 }
 //Google Charts Code:
 
