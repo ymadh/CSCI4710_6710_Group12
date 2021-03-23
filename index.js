@@ -5,6 +5,7 @@ var classmateData = [
         'galic': 0,
         'complexion': 1,
         'icon': 'h',
+		'isVampire': 0
     },
     {
         'name': 'Lee',
@@ -12,6 +13,7 @@ var classmateData = [
         'galic': 1,
         'complexion': 1,
         'icon': 'v',
+		'isVampire': 1
     },
     {
         'name': 'Emma',
@@ -19,20 +21,23 @@ var classmateData = [
         'galic': 1,
         'complexion': 0,
         'icon': 'h',
+		'isVampire': 0
     },
     {
         'name': 'Ava',
         'shadow': 1,
         'galic': 1,
         'complexion': 0,
-        'icon': 'h'
+        'icon': 'h',
+		'isVampire': 0
     },
     {
         'name': 'Alex',
         'shadow': 1,
         'galic': 1,
         'complexion': 1,
-        'icon': 'v'
+        'icon': 'v',
+		'isVampire': 1
     },
 ];
 function score_quiz() {
@@ -89,17 +94,21 @@ function score_quiz() {
 
 
     var name = document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value;
-    newObj.name = name;
-    classmateData.push(newObj);
-    insertRow(newObj);
+    newObj.name = name;   
+    ;
 
     if (vampireScore > 6) {
         document.getElementById("results").innerHTML = name + " is a Vampire!"
-        drawChart('v');
+        drawChart();
+		newObj.isVampire = 1;
     } else {
         document.getElementById("results").innerHTML = name + " is not a Vampire!"
-        drawChart('h');
+        drawChart();
+		newObj.isVampire = 0;
     }
+	
+	classmateData.push(newObj);
+	insertRow(newObj)
 
 }
 
@@ -123,10 +132,10 @@ function headsOrTails() {
     x = Math.floor(Math.random() * 2);
     if (x == 0) {
         document.getElementById("results").innerHTML = "You are a Vampire!"
-        drawChart('v');
+        drawChart();
     } else {
         document.getElementById("results").innerHTML = "You are not a Vampire!"
-        drawChart('h');
+        drawChart();
     }
 }
 //Google Charts Code:
@@ -138,16 +147,17 @@ google.charts.load('current', { 'packages': ['corechart'] });
 var chart;
 var data;
 var options;
-var humans = 15;
-var vampires = 10;
+var humans = 0;
+var vampires = 0;
 
-function drawChart(augment) {
 
-    if (augment == 'h') {
-        humans += 1;
-    } else {
-        vampires += 1;
-    }
+function drawChart() {
+
+    for (let i = 0; i < classmateData.length; i++) {
+        classmateData[i].isVampire ? vampires += 1 : humans += 1;
+
+	}
+
     //create table
     data = new google.visualization.DataTable();
     data.addColumn('string', 'Element');
@@ -192,11 +202,13 @@ function insertRow(rowObj) {
     let cell3 = row.insertCell(2);
     let cell4 = row.insertCell(3);
     let cell5 = row.insertCell(4);
+	let cell6 = row.insertCell(5);
 
     cell1.innerHTML = rowObj.name;
     cell2.innerHTML = rowObj.shadow ? 'Shadow' : 'No Shadow';
     cell3.innerHTML = rowObj.complexion ? 'Pale' : 'Not Pale';
     cell4.innerHTML = rowObj.garlic ? 'Love Garlic' : 'Hate Garlic';
     cell5.innerHTML = rowObj.icon === 'v' ? '<img src="vampire.jpg" width="50">' : '<img src="human.png" width="50">';
+	cell6.innerHTML = rowObj.isVampire ? 'No' : 'Yes';
 
 }
