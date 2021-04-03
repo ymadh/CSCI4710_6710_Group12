@@ -1,0 +1,2 @@
+modify TableCreateAndImportScript.sql to use your local path on line 27
+run `psql -f TableCreateAndImportScript.sql`
