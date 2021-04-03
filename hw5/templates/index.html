@@ -3,28 +3,38 @@
 <html>
 
 <head>
-    <title>Database</title>
-    <meta charset="utf-8">
+	<title>Upload a CSV File</title>
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script src="/static/js/index.js"></script>
 </head>
 
 
 <body>
-    <p>{{log_html}}</p>
-    <button type="button" id="display_button">Display all user in the select list</button>
-    <button type="button" id="delete_button">Delete the chosen user</button>
-     <div class="form-group">
-	  <label for="sel1">Select list:</label>
-	  <select class="form-control" id="sel1">
+	<h1>Show user data from backend</h1>
+	<!-- <p>{{column_names}}</p>
+	<p>{{data_part}}</p> -->
 
-	  </select>
-	</div> 
-
-
+	<table class="table">
+		<thead>
+		  <tr>
+			{% for item in column_html %}
+				<th>{{item}}</th>
+			{% endfor %}
+		  </tr>
+		</thead>
+		<tbody>
+		  {% for row in data_html %}
+			   <tr>
+				{% for data in row %}
+					<td>{{ data }}</td>
+				{% endfor %}
+			   </tr>
+		   {% endfor %}
+		</tbody>
+	  </table>
 
 
 </body>
