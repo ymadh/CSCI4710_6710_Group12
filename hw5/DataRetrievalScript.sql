@@ -24,3 +24,4 @@ AS (SELECT *
     WHERE "What is your gender?" = "Female"
     AND "How old are you?" >= 36);
 
+/* Step 2: Split data groups generated from Step 1 into smaller groups based on countries, such as US groups and Canada groups */
