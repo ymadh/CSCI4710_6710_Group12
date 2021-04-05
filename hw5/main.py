@@ -47,19 +47,21 @@ class HwModel(db.Model):
 
 
 def parse_data(query_result):
-	'''
-	this function jsonifies query results
-	'''
-	result_list = []
-	for element in query_result:
-		result_list.append([element.index, element.country, element.age, element.gender, element.fear, element.anxious, element.anger, element.happy, element.sad, element.emotion, element.meaning, element.occupation])
-	#print({'user_data': result_list})
-	return {'user_data': result_list}
+    '''
+    this function jsonifies query results
+    '''
+    result_list = []
+    for element in query_result:
+        result_list.append([element.index, element.country, element.age, element.gender, element.fear, element.anxious,
+                            element.anger, element.happy, element.sad, element.emotion, element.meaning, element.occupation])
+    #print({'user_data': result_list})
+    return result_list
+
 
 # evil gloabl variable...
 # the data should be obtained from your db
+#data = parse_data(HwModel.query.all())
 data = parse_data(HwModel.query.all())
-
 column_names = ["index", "What country do you live in?", "How old are you?", "What is your gender?", "To what extent do you feel FEAR due to the coronavirus?", "To what extent do you feel ANXIOUS due to the coronavirus?", "To what extent do you feel ANGRY due to the coronavirus?",
                 "To what extent do you feel HAPPY due to the coronavirus?", "To what extent do you feel SAD due to the coronavirus?", "Which emotion is having the biggest impact on you?", "What makes you feel that way?", "What brings you the most meaning during the coronavirus outbreak?", "What is your occupation?"]
 
@@ -70,7 +72,7 @@ def index():
     return render_template('index.html', labels_html=labels, column_html=column_names, data_html=data)
 
 
-if __name__ == '__main__': # set debug mode
+if __name__ == '__main__':  # set debug mode
     app.debug = True
     # your local machine ip
     ip = '127.0.0.1'
