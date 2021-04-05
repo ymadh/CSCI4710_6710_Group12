@@ -4,12 +4,14 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:postgres@localhost:5432/"
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/group12'
 db = SQLAlchemy(app)
+#app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres@localhost:5432/group12"
 
 
 class HwModel(db.Model):
-    __tablename__ = 'hw5' #removed public. from before hw5
+
+    __tablename__ = 'hw5'
 
     index = db.Column(db.Integer(), primary_key=True)
     country = db.Column(db.String())
@@ -23,7 +25,7 @@ class HwModel(db.Model):
     emotion = db.Column(db.String())
     meaning = db.Column(db.String())
     occupation = db.Column(db.String())
-#id, removed between self, and country
+
     def __init__(self, index, country, age, gender, fear, anxious, anger, happy, sad, emotion, meaning, occupation):
         self.index = index
         self.country = country
@@ -39,7 +41,8 @@ class HwModel(db.Model):
         self.occupation = occupation
 
     def __repr__(self):
-        return f"<HW {self.id}>" #removed .id after self
+
+        return f"<HW {self.index}>"
 
 
 # evil gloabl variable...
@@ -56,8 +59,7 @@ def index():
     return render_template('index.html', labels_html=labels, column_html=column_names, data_html=sample_data['user_data'])
 
 
-if __name__ == '__main__':
-    # set debug mode
+if __name__ == '__main__': # set debug mode
     app.debug = True
     # your local machine ip
     ip = '127.0.0.1'

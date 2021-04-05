@@ -1,8 +1,13 @@
+CREATE USER devUser with SUPERUSER;
+CREATE DATABASE group12 with owner devUser;
+\c group12;
+
 --create table script
 
 DROP TABLE public.hw5;
 
 CREATE TABLE public.hw5
+
 (
     "index" bigint PRIMARY KEY,
     "country" character varying(50) COLLATE pg_catalog."default",
@@ -21,7 +26,7 @@ CREATE TABLE public.hw5
 
 TABLESPACE pg_default;
 
-ALTER TABLE public.hw5
+ALTER TABLE hw5
     OWNER to postgres;
 	
 	
