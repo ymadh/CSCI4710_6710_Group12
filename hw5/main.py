@@ -11,9 +11,10 @@ db = SQLAlchemy(app)
 
 
 class HwModel(db.Model):
+
     __tablename__ = 'hw5'
 
-    index = db.Column(db.Integer, primary_key=True)
+    index = db.Column(db.Integer(), primary_key=True)
     country = db.Column(db.String())
     age = db.Column(db.Integer())
     gender = db.Column(db.Integer())
@@ -41,6 +42,7 @@ class HwModel(db.Model):
         self.occupation = occupation
 
     def __repr__(self):
+
         return f"<HW {self.index}>"
 
 
