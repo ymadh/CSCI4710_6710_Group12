@@ -1,3 +1,4 @@
+import json
 from flask import Flask, render_template
 import util
 from flask_sqlalchemy import SQLAlchemy
@@ -43,9 +44,19 @@ class HwModel(db.Model):
         return f"<HW {self.index}>"
 
 
+def parse_data(query_result):
+	'''
+	this function jsonifies query results
+	'''
+	result_list = []
+	for element in query_result:
+		result_list.append([element.index, element.country, element.age, element.gender, element.fear, element.anxious, element.anger, element.happy, element.sad, element.emotion, element.meaning, element.occupation])
+	#print({'user_data': result_list})
+	return {'user_data': result_list}
+
 # evil gloabl variable...
 # the data should be obtained from your db
-sample_data = HwModel.query.all()
+data = parse_data(HwModel.query.all())
 
 column_names = ["index", "What country do you live in?", "How old are you?", "What is your gender?", "To what extent do you feel FEAR due to the coronavirus?", "To what extent do you feel ANXIOUS due to the coronavirus?", "To what extent do you feel ANGRY due to the coronavirus?",
                 "To what extent do you feel HAPPY due to the coronavirus?", "To what extent do you feel SAD due to the coronavirus?", "Which emotion is having the biggest impact on you?", "What makes you feel that way?", "What brings you the most meaning during the coronavirus outbreak?", "What is your occupation?"]
@@ -53,8 +64,8 @@ column_names = ["index", "What country do you live in?", "How old are you?", "Wh
 
 @app.route('/')
 def index():
-    labels = util.cluster_user_data(sample_data['user_data'])
-    return render_template('index.html', labels_html=labels, column_html=column_names, data_html=sample_data['user_data'])
+    labels = util.cluster_user_data(data)
+    return render_template('index.html', labels_html=labels, column_html=column_names, data_html=data)
 
 
 if __name__ == '__main__': # set debug mode
