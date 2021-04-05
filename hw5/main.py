@@ -9,9 +9,9 @@ db = SQLAlchemy(app)
 
 
 class HwModel(db.Model):
-    __tablename__ = 'public.hw5'
+    __tablename__ = 'hw5' #removed public. from before hw5
 
-    id = db.Column(db.Integer, primary_key=True)
+    index = db.Column(db.Integer(), primary_key=True)
     country = db.Column(db.String())
     age = db.Column(db.Integer())
     gender = db.Column(db.Integer())
@@ -23,9 +23,9 @@ class HwModel(db.Model):
     emotion = db.Column(db.String())
     meaning = db.Column(db.String())
     occupation = db.Column(db.String())
-
-    def __init__(self, id, country, age, gender, fear, anxious, anger, happy, sad, emotion, meaning, occupation):
-        self.id = id
+#id, removed between self, and country
+    def __init__(self, index, country, age, gender, fear, anxious, anger, happy, sad, emotion, meaning, occupation):
+        self.index = index
         self.country = country
         self.age = age
         self.gender = gender
@@ -39,7 +39,7 @@ class HwModel(db.Model):
         self.occupation = occupation
 
     def __repr__(self):
-        return f"<HW {self.id}>"
+        return f"<HW {self.id}>" #removed .id after self
 
 
 # evil gloabl variable...

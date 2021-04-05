@@ -1,8 +1,10 @@
 --create table script
 
+DROP TABLE public.hw5;
+
 CREATE TABLE public.hw5
 (
-    index bigint,
+    "index" bigint PRIMARY KEY,
     "country" character varying(50) COLLATE pg_catalog."default",
     "age" bigint,
     "gender" character varying(50) COLLATE pg_catalog."default",
@@ -24,4 +26,4 @@ ALTER TABLE public.hw5
 	
 	
 --Add in info (you would need to change the file path)
-copy hw5 FROM '/Users/adunphy/Sites/CSCI4710/CSCI4710-group12/hw5/data/project5csv.csv' DELIMITER ',' CSV HEADER;
+copy hw5 FROM '/home/james/hw5/CSCI4710_6710_Group12/hw5/data/project5csv.csv' DELIMITER ',' CSV HEADER;
