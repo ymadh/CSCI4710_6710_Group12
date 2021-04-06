@@ -5,6 +5,10 @@ CREATE DATABASE group12 with owner devUser;
 --create table script
 
 DROP TABLE public.hw5;
+DROP TABLE public.hw5_group1;
+DROP TABLE public.hw5_group2;
+DROP TABLE public.hw5_group3;
+DROP TABLE public.hw5_group4;
 
 CREATE TABLE public.hw5
 
@@ -31,4 +35,11 @@ ALTER TABLE hw5
 	
 	
 --Add in info (you would need to change the file path)
-copy hw5 FROM '/home/james/hw5/CSCI4710_6710_Group12/hw5/data/project5csv.csv' DELIMITER ',' CSV HEADER;
+-- copy hw5 FROM '/home/james/hw5/CSCI4710_6710_Group12/hw5/data/project5csv.csv' DELIMITER ',' CSV HEADER;
+copy hw5 FROM '/Users/adunphy/Sites/CSCI4710/CSCI4710-group12/hw5/data/project5csv.csv' DELIMITER ',' CSV HEADER;
+
+
+CREATE TABLE public.hw5_group1 as SELECT * FROM public.hw5 where gender = 'Male' and age <= 35;
+CREATE TABLE public.hw5_group2 as SELECT * FROM public.hw5 where gender = 'Male' and age > 35;
+CREATE TABLE public.hw5_group3 as SELECT * FROM public.hw5 where gender = 'Female' and age <= 35;
+CREATE TABLE public.hw5_group4 as SELECT * FROM public.hw5 where gender = 'Female' and age > 35;
