@@ -2,6 +2,7 @@ import json
 from flask import Flask, render_template
 import util
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import and_
 import os
 
 app = Flask(__name__)
@@ -64,16 +65,27 @@ def parse_data(query_result):
 # the data should be obtained from your db
 #data = parse_data(HwModel.query.all())
 data = parse_data(HwModel.query.all())
-column_names = ["index", "What country do you live in?", "How old are you?", "What is your gender?", "To what extent do you feel FEAR due to the coronavirus?", "To what extent do you feel ANXIOUS due to the coronavirus?", "To what extent do you feel ANGRY due to the coronavirus?",
-                "To what extent do you feel HAPPY due to the coronavirus?", "To what extent do you feel SAD due to the coronavirus?", "Which emotion is having the biggest impact on you?", "What makes you feel that way?", "What brings you the most meaning during the coronavirus outbreak?", "What is your occupation?"]
+column_names = ["index", "country", "age", "gender", "fear", "anxious", "angry",
+                "happy", "sad", "impact", "fel", "meaning", "occupation"]
 
 
 @app.route('/')
 def index():
     #labels = util.cluster_user_data(data)
-    labels = ['young male', 'middle-aged or old male', 'young female', 'middle-aged or old female']
+    labels = ['young male', 'middle-aged or old male',
+              'young female', 'middle-aged or old female']
     display_info = "Data split by gender and age"
     return render_template('index.html', column_html=column_names, data_html=util.split_data_for_hw(data), labels_html=labels, display_html=display_info)
+
+
+@app.route('/group1')
+def group1():
+    group1 = parse_data(HwModel.query.filter(
+        and_(HwModel.age <= 35, HwModel.gender == 'Male')).all())
+    labels = util.cluster_user_data(group1)
+    split_result = util.split_user_data(group1, labels)
+    display_info = "Data split by gender and age"
+    return render_template('group1.html', column_html=column_names, data_html=split_result, labels_html=labels, display_html=display_info)
 
 
 if __name__ == '__main__':  # set debug mode
