@@ -6,9 +6,17 @@ CREATE DATABASE group12 with owner devUser;
 
 DROP TABLE public.hw5;
 DROP TABLE public.hw5_group1;
+DROP TABLE public.hw5_group1_USA;
+DROP TABLE public.hw5_group1_non_USA;
 DROP TABLE public.hw5_group2;
+DROP TABLE public.hw5_group2_USA;
+DROP TABLE public.hw5_group2_non_USA;
 DROP TABLE public.hw5_group3;
+DROP TABLE public.hw5_group3_USA;
+DROP TABLE public.hw5_group3_non_USA;
 DROP TABLE public.hw5_group4;
+DROP TABLE public.hw5_group4_USA;
+DROP TABLE public.hw5_group4_non_USA;
 
 CREATE TABLE public.hw5
 
@@ -40,6 +48,14 @@ copy hw5 FROM '/Users/adunphy/Sites/CSCI4710/CSCI4710-group12/hw5/data/project5c
 
 
 CREATE TABLE public.hw5_group1 as SELECT * FROM public.hw5 where gender = 'Male' and age <= 35;
+CREATE TABLE public.hw5_group1_USA as SELECT * FROM public.hw5_group1 where country like 'USA%';
+CREATE TABLE public.hw5_group1_non_USA as SELECT * FROM public.hw5_group1 where country not like 'USA%';
 CREATE TABLE public.hw5_group2 as SELECT * FROM public.hw5 where gender = 'Male' and age > 35;
+CREATE TABLE public.hw5_group2_USA as SELECT * FROM public.hw5_group2 where country like 'USA%';
+CREATE TABLE public.hw5_group2_non_USA as SELECT * FROM public.hw5_group2 where country not like 'USA%';
 CREATE TABLE public.hw5_group3 as SELECT * FROM public.hw5 where gender = 'Female' and age <= 35;
+CREATE TABLE public.hw5_group3_USA as SELECT * FROM public.hw5_group3 where country like 'USA%';
+CREATE TABLE public.hw5_group3_non_USA as SELECT * FROM public.hw5_group3 where country not like 'USA%';
 CREATE TABLE public.hw5_group4 as SELECT * FROM public.hw5 where gender = 'Female' and age > 35;
+CREATE TABLE public.hw5_group4_USA as SELECT * FROM public.hw5_group4 where country like 'USA%';
+CREATE TABLE public.hw5_group4_non_USA as SELECT * FROM public.hw5_group4 where country not like 'USA%';
