@@ -29,3 +29,27 @@ def split_user_data(input_data, labels, n_clusters=3):
         result_list.append([input_data[i] for i in tmp_indices])
 
     return result_list
+    
+def split_data_for_hw(input_data):
+	
+	ym = []
+	om = []
+	yf = []
+	of = []
+	for data in input_data:
+		if data[3].lower() == 'male':
+			if data[2] <= 35:
+				ym.append(data)
+			else:
+				om.append(data)
+		else:
+			if data[2] <= 35:
+				yf.append(data)
+			else:
+				of.append(data)
+	result_list = []
+	result_list.append(ym)
+	result_list.append(om)
+	result_list.append(yf)
+	result_list.append(of)
+	return result_list

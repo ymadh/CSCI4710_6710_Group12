@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/group12'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:pass@localhost/group12'
 db = SQLAlchemy(app)
 #app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres@localhost:5432/group12"
 
@@ -70,8 +70,10 @@ column_names = ["index", "What country do you live in?", "How old are you?", "Wh
 
 @app.route('/')
 def index():
-    labels = util.cluster_user_data(data)
-    return render_template('index.html', labels_html=labels, column_html=column_names, data_html=data)
+    #labels = util.cluster_user_data(data)
+    labels = ['young male', 'middle-aged or old male', 'young female', 'middle-aged or old female']
+    display_info = "Data split by gender and age"
+    return render_template('index.html', column_html=column_names, data_html=util.split_data_for_hw(data), labels_html=labels, display_html=display_info)
 
 
 if __name__ == '__main__':  # set debug mode

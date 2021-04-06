@@ -9,11 +9,16 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<style>
+	.Labels {text-align: center; font-weight: bold; font-size: 1.5em;}
+	td {width: 100%;}
+	</style>
 </head>
 
 
 <body>
-	<h1>Show user data from backend</h1>
+	<h1>{{display_html}}</h1>
+
 <table class="table">
 		<thead>
 		  <tr>
@@ -23,13 +28,23 @@
 		  </tr>
 		</thead>
 		<tbody>
-		  {% for row in data_html %}
-			   <tr>
-				{% for data in row %}
-					<td>{{ data }}</td>
-				{% endfor %}
-			   </tr>
-		   {% endfor %}
+		
+		 		 {% for row in data_html %}
+		 		 {% for label in labels_html %}	
+			<tr colspan =13>
+				<td  class="Labels" colspan=13> {{label}}</td>
+			</tr>	
+			   		
+					{% for rdata in row %}
+						<tr>
+							{% for data in rdata %}
+								<td>{{ data }}</td>
+							{% endfor %}
+						</tr>
+					{% endfor %}
+			   		
+		 		  {% endfor %}
+		{% endfor %}
 		</tbody>
 	  </table>
 </body>
