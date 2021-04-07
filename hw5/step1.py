@@ -32,7 +32,7 @@ column_names = ["index", "country", "age", "gender", "fear", "anxious", "angry",
 @app.route('/')
 def index():
     labels = ['Group1', 'Group2', 'Group3', 'Group4']
-    return render_template('index2.html',
+    return render_template('step1.html',
                            labels_html=labels,
                            column_html=column_names,
                            group1=group1Data,
