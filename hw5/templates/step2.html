@@ -26,47 +26,12 @@
   <body>
     <h1>{{display_html}}</h1>
 
-    <h2>{{labels_html[0]}}</h2>
-    <table class="table">
-      <thead>
-        <tr>
-          {% for item in column_html %}
-          <th>{{item}}</th>
-          {% endfor %}
-        </tr>
-      </thead>
-      <tbody>
-        {% for row in group1DataA_html %}
-        <tr>
-          {% for data in row %}
-          <td>{{ data }}</td>
-          {% endfor %}
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <h2>{{labels_html[1]}}</h2>
+    <h1>{{labels_html[0]}}</h1>
 
-    <table class="table">
-      <thead>
-        <tr>
-          {% for item in column_html %}
-          <th>{{item}}</th>
-          {% endfor %}
-        </tr>
-      </thead>
-      <tbody>
-        {% for row in group1DataB_html %}
-        <tr>
-          {% for data in row %}
-          <td>{{ data }}</td>
-          {% endfor %}
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <h2>{{labels_html[2]}}</h2>
+    {% for rows in data1_html %}
+    <hr />
 
+    <h2>Kmeans Cluster {{loop.index}}</h2>
     <table class="table">
       <thead>
         <tr>
@@ -76,34 +41,15 @@
         </tr>
       </thead>
       <tbody>
-        {% for row in group2DataA_html %}
+        {% for row in rows %}
         <tr>
-          {% for data in row %}
-          <td>{{ data }}</td>
+          {% for cols in row %}
+          <td style="width: 100px">{{cols}}</td>
           {% endfor %}
         </tr>
         {% endfor %}
       </tbody>
     </table>
-    <h2>{{labels_html[3]}}</h2>
-
-    <table class="table">
-      <thead>
-        <tr>
-          {% for item in column_html %}
-          <th>{{item}}</th>
-          {% endfor %}
-        </tr>
-      </thead>
-      <tbody>
-        {% for row in group2DataB_html %}
-        <tr>
-          {% for data in row %}
-          <td>{{ data }}</td>
-          {% endfor %}
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+    {% endfor %}
   </body>
 </html>

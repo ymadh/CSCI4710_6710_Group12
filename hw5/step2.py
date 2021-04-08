@@ -1,6 +1,7 @@
 import psycopg2
 from flask import Flask, render_template
 import util
+import numpy as np
 
 
 app = Flask(__name__)
@@ -35,9 +36,14 @@ def index():
     labels = ['Group1 - USA', 'Group1 - Non USA',
               'Group2 USA ', 'Group2 - Non USA']
 
+    if (len(group1DataA) > 10):
+        labels_group1 = util.cluster_user_data(group1DataA)
+        data1 = util.split_user_data(group1DataA, labels_group1)
+
     return render_template('step2.html',
                            labels_html=labels,
                            column_html=column_names,
+                           data1_html=data1,
                            group1DataA_html=group1DataA,
                            group1DataB_html=group1DataB,
                            group2DataA_html=group2DataA,
