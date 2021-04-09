@@ -69,7 +69,7 @@ cursor.execute(group4QueryB)
 group4DataB = cursor.fetchall()
 
 column_names = ["index", "country", "age", "gender", "fear", "anxious", "angry",
-                "happy", "sad", "impact", "fel", "meaning", "occupation"]
+                "happy", "sad", "impact", "feeling", "meaning", "occupation"]
 
 
 @app.route('/')
