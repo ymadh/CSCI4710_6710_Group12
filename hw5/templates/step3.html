@@ -1,7 +1,13 @@
 {% extends "base.html" %} {% block content %}
+
 <h1>{{display_html}}</h1>
 
-<h2>{{labels_html[0]}}</h2>
+{% for datalist in data %}
+<h1>{{labels_html[loop.index]}}</h1>
+{% for rows in datalist %}
+<hr />
+
+<h2>Kmeans Cluster {{loop.index}}</h2>
 <table class="table">
   <thead>
     <tr>
@@ -11,13 +17,13 @@
     </tr>
   </thead>
   <tbody>
-    {% for row in allData %}
+    {% for row in rows %}
     <tr>
-      {% for data in row %}
-      <td>{{ data }}</td>
+      {% for cols in row %}
+      <td style="width: 100px">{{cols}}</td>
       {% endfor %}
     </tr>
     {% endfor %}
   </tbody>
 </table>
-{% endblock %}
+{% endfor %} {%endfor%} {% endblock %}

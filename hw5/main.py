@@ -1,94 +1,158 @@
-import json
+import psycopg2
 from flask import Flask, render_template
 import util
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import and_
-import os
+
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:pass@localhost/group12'
-db = SQLAlchemy(app)
-#app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres@localhost:5432/group12"
+
+connection = psycopg2.connect(user="postgres",
+                              password="",
+                              host="127.0.0.1",
+                              port="5432",
+                              database="group12")
+
+# step 1 - all data
+cursor = connection.cursor()
+allDataQuer = "select * from hw5"
+cursor.execute(allDataQuer)
+allData = cursor.fetchall()
+
+# step2 - groups based on M / F & age
+cursor = connection.cursor()
+group1Query = "select * from hw5_group1"
+cursor.execute(group1Query)
+group1Data = cursor.fetchall()
+group2Query = "select * from hw5_group2"
+cursor.execute(group2Query)
+group2Data = cursor.fetchall()
+group3Query = "select * from hw5_group3"
+cursor.execute(group3Query)
+group3Data = cursor.fetchall()
+group4Query = "select * from hw5_group4"
+cursor.execute(group4Query)
+group4Data = cursor.fetchall()
 
 
-class HwModel(db.Model):
+# step 3
+cursor = connection.cursor()
+group1QueryA = "select * from hw5_group1_USA"
+cursor.execute(group1QueryA)
+group1DataA = cursor.fetchall()
+group1QueryB = "select * from hw5_group1_non_USA"
+cursor.execute(group1QueryB)
+group1DataB = cursor.fetchall()
 
-    __tablename__ = 'hw5'
+cursor = connection.cursor()
+group2QueryA = "select * from hw5_group2_USA"
+cursor.execute(group2QueryA)
+group2DataA = cursor.fetchall()
+group2QueryB = "select * from hw5_group2_non_USA"
+cursor.execute(group2QueryB)
+group2DataB = cursor.fetchall()
 
-    index = db.Column(db.Integer(), primary_key=True)
-    country = db.Column(db.String())
-    age = db.Column(db.Integer())
-    gender = db.Column(db.Integer())
-    fear = db.Column(db.Integer())
-    anxious = db.Column(db.Integer())
-    anger = db.Column(db.Integer())
-    happy = db.Column(db.Integer())
-    sad = db.Column(db.Integer())
-    emotion = db.Column(db.String())
-    desc = db.Column(db.String())
-    meaning = db.Column(db.String())
-    occupation = db.Column(db.String())
+cursor = connection.cursor()
+group3QueryA = "select * from hw5_group3_USA"
+cursor.execute(group3QueryA)
+group3DataA = cursor.fetchall()
+group3QueryB = "select * from hw5_group3_non_USA"
+cursor.execute(group3QueryB)
+group3DataB = cursor.fetchall()
 
-    def __init__(self, index, country, age, gender, fear, anxious, anger, happy, sad, emotion, desc, meaning, occupation):
-        self.index = index
-        self.country = country
-        self.age = age
-        self.gender = gender
-        self.fear = fear
-        self.anxious = anxious
-        self.anger = anger
-        self.happy = happy
-        self.sad = sad
-        self.emotion = emotion
-        self.desc = description
-        self.meaning = meaning
-        self.occupation = occupation
+cursor = connection.cursor()
+group4QueryA = "select * from hw5_group4_USA"
+cursor.execute(group4QueryA)
+group4DataA = cursor.fetchall()
+group4QueryB = "select * from hw5_group4_non_USA"
+cursor.execute(group4QueryB)
+group4DataB = cursor.fetchall()
 
-    def __repr__(self):
-
-        return f"<HW {self.index}>"
-
-
-def parse_data(query_result):
-    '''
-    this function jsonifies query results
-    '''
-    result_list = []
-    for element in query_result:
-        result_list.append([element.index, element.country, element.age, element.gender, element.fear, element.anxious,
-                            element.anger, element.happy, element.sad, element.emotion, element. desc, element.meaning, element.occupation])
-    #print({'user_data': result_list})
-    return result_list
-
-
-# evil gloabl variable...
-# the data should be obtained from your db
-#data = parse_data(HwModel.query.all())
-data = parse_data(HwModel.query.all())
 column_names = ["index", "country", "age", "gender", "fear", "anxious", "angry",
                 "happy", "sad", "impact", "fel", "meaning", "occupation"]
 
 
 @app.route('/')
 def index():
-    #labels = util.cluster_user_data(data)
-    labels = ['young male', 'middle-aged or old male',
-              'young female', 'middle-aged or old female']
-    display_info = "Data split by gender and age"
-    return render_template('index.html', column_html=column_names, data_html=util.split_data_for_hw(data), labels_html=labels, display_html=display_info)
+    return render_template('index.html')
 
 
-@app.route('/group1')
-def group1():
-    group1 = parse_data(HwModel.query.filter(
-        and_(HwModel.age <= 35, HwModel.gender == 'Male')).all())
-    labels = util.cluster_user_data(group1)
-    split_result = util.split_user_data(group1, labels)
-    display_info = "Data split by gender and age"
-    return render_template('group1.html', column_html=column_names, data_html=split_result, labels_html=labels, display_html=display_info)
+@app.route('/step1')
+def step1():
+    labels = ['All Data']
+    return render_template('step1.html',
+                           labels_html=labels,
+                           column_html=column_names,
+                           allData=allData
+                           )
 
 
-if __name__ == '__main__':  # set debug mode
+@app.route('/step2')
+def step2():
+    labels = ['Young Male', 'Older Male', 'Young Female', 'Older Female']
+    return render_template('step2.html',
+                           labels_html=labels,
+                           column_html=column_names,
+                           group1=group1Data,
+                           group2=group2Data,
+                           group3=group3Data,
+                           group4=group4Data
+                           )
+
+
+@app.route('/step3')
+def step3():
+    labels = [
+        'Young Male USA',
+        'Young Male Non-USA',
+        'Older Male USA',
+        'Older Male Non-USA',
+        'Young Female USA',
+        'Young Female Non-USA',
+        'Older Female USA',
+        'Older Female Non-USA']
+
+    data = []
+    if (len(group1DataA) > 10):
+        label_group = util.cluster_user_data(group1DataA)
+        data.append(util.split_user_data(group1DataA, label_group))
+
+    if (len(group1DataB) > 10):
+        label_group = util.cluster_user_data(group1DataB)
+        data.append(util.split_user_data(group1DataB, label_group))
+
+    if (len(group2DataA) > 10):
+        label_group = util.cluster_user_data(group2DataA)
+        data.append(util.split_user_data(group2DataA, label_group))
+
+    if (len(group2DataB) > 10):
+        label_group = util.cluster_user_data(group2DataB)
+        data.append(util.split_user_data(group2DataB, label_group))
+
+    if (len(group3DataA) > 10):
+        label_group = util.cluster_user_data(group3DataA)
+        data.append(util.split_user_data(group3DataA, label_group))
+
+    if (len(group3DataB) > 10):
+        label_group = util.cluster_user_data(group3DataB)
+        data.append(util.split_user_data(group3DataB, label_group))
+
+    if (len(group4DataA) > 10):
+        label_group = util.cluster_user_data(group4DataA)
+        data.append(util.split_user_data(group4DataA, label_group))
+
+    if (len(group4DataB) > 10):
+        label_group = util.cluster_user_data(group4DataB)
+        data.append(util.split_user_data(group4DataB, label_group))
+
+    return render_template('step3.html',
+                           labels_html=labels,
+                           column_html=column_names,
+                           data=data
+
+                           )
+
+
+if __name__ == '__main__':
+    # set debug mode
     app.debug = True
     # your local machine ip
     ip = '127.0.0.1'
