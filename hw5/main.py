@@ -1,7 +1,10 @@
+import os
+import json
+import util
 import psycopg2
 from flask import Flask, render_template
-import util
-
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import and_
 
 app = Flask(__name__)
 
@@ -11,13 +14,13 @@ connection = psycopg2.connect(user="postgres",
                               port="5432",
                               database="group12")
 
-# step 1 - all data
+# all data
 cursor = connection.cursor()
 allDataQuer = "select * from hw5"
 cursor.execute(allDataQuer)
 allData = cursor.fetchall()
 
-# step2 - groups based on M / F & age
+# step 1
 cursor = connection.cursor()
 group1Query = "select * from hw5_group1"
 cursor.execute(group1Query)
@@ -32,7 +35,7 @@ group4Query = "select * from hw5_group4"
 cursor.execute(group4Query)
 group4Data = cursor.fetchall()
 
-# step 3
+# steps 2 & 3
 cursor = connection.cursor()
 group1QueryA = "select * from hw5_group1_USA"
 cursor.execute(group1QueryA)
@@ -96,14 +99,25 @@ def step1():
 
 @app.route('/step2')
 def step2():
-    labels = ['Young Male', 'Older Male', 'Young Female', 'Older Female']
+    labels = ['Young Male USA',
+              'Young Male Non-USA',
+              'Older Male USA',
+              'Older Male Non-USA',
+              'Young Female USA',
+              'Young Female Non-USA',
+              'Older Female USA',
+              'Older Female Non-USA']
     return render_template('step2.html',
                            labels_html=labels,
                            column_html=column_names,
-                           group1=group1Data,
-                           group2=group2Data,
-                           group3=group3Data,
-                           group4=group4Data
+                           group1=group1DataA,
+                           group2=group1DataB,
+                           group3=group2DataA,
+                           group4=group2DataB,
+                           group5=group3DataA,
+                           group6=group3DataB,
+                           group7=group4DataA,
+                           group8=group4DataB
                            )
 
 
@@ -157,7 +171,6 @@ def step3():
                            column_html=column_names,
                            data=data
                            )
-
 
 if __name__ == '__main__':
     app.debug = True
