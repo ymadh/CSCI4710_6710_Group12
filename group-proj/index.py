@@ -27,5 +27,10 @@ def rent():
     return render_template('rent.html')
 
 
+@app.route("/group")
+def rent():
+    return render_template('group.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)
