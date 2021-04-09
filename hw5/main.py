@@ -6,7 +6,7 @@ import util
 app = Flask(__name__)
 
 connection = psycopg2.connect(user="postgres",
-                              password="",
+                              password="pass",
                               host="127.0.0.1",
                               port="5432",
                               database="group12")
@@ -31,7 +31,6 @@ group3Data = cursor.fetchall()
 group4Query = "select * from hw5_group4"
 cursor.execute(group4Query)
 group4Data = cursor.fetchall()
-
 
 # step 3
 cursor = connection.cursor()
@@ -74,16 +73,26 @@ column_names = ["index", "country", "age", "gender", "fear", "anxious", "angry",
 def index():
     return render_template('index.html')
 
-
-@app.route('/step1')
-def step1():
+@app.route('/alldata')
+def alldata():
     labels = ['All Data']
-    return render_template('step1.html',
+    return render_template('alldata.html',
                            labels_html=labels,
                            column_html=column_names,
                            allData=allData
                            )
 
+@app.route('/step1')
+def step1():
+    labels = ['Young Male', 'Older Male', 'Young Female', 'Older Female']
+    return render_template('step1.html',
+                           labels_html=labels,
+                           column_html=column_names,
+                           group1=group1Data,
+                           group2=group2Data,
+                           group3=group3Data,
+                           group4=group4Data
+                           )
 
 @app.route('/step2')
 def step2():
@@ -147,13 +156,10 @@ def step3():
                            labels_html=labels,
                            column_html=column_names,
                            data=data
-
                            )
 
 
 if __name__ == '__main__':
-    # set debug mode
     app.debug = True
-    # your local machine ip
     ip = '127.0.0.1'
     app.run(host=ip)
