@@ -33,6 +33,7 @@ Open TableCreateAndImportScript.sql and modify line 52 to point to your data dir
 
 Run the following to create all the SQL tables required to run this script.
 If you need to delete existing tables (for example, to restart this assignment), please uncomment the DROP TABLE commands in TableCreateAndImportScript.sql.
+(An alternate way to run this function is to open a new terminal window in this directory, enter "postgres" and then run the below command)
 
 ```
 psql -f TableCreateAndImportScript.sql
