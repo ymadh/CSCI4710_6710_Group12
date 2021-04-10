@@ -1,5 +1,3 @@
-Example 39: This project shows how to interact with a database in your web app.
-
 ## Quick Start
 
 ### Local Test Setup
