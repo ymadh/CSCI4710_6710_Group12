@@ -29,9 +29,10 @@ pip3 install -r requirements.txt
 
 Because we are now inside a virtual environment. We do not need sudo.
 
-Open TableCreateAndImportScript.sql and modify line 52 to point to your data directory
+Open TableCreateAndImportScript.sql and modify line 52 to point to your data directory.
 
-Run the following to create all the SQL tables required to run this script
+Run the following to create all the SQL tables required to run this script.
+If you need to delete existing tables (for example, to restart this assignment), please uncomment the DROP TABLE commands.
 
 ```
 psql -f TableCreateAndImportScript.sql
