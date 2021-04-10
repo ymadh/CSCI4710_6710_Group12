@@ -20,7 +20,7 @@ Simply uncomment this section if you need to restart. */
 -- DROP TABLE public.hw5_group4_USA;
 -- DROP TABLE public.hw5_group4_non_USA;
 
-/* Run the below code to create the required tables for this assignment. Note the source file in line 50 below,
+/* Run the below code to create the required tables for this assignment. Note the source file in line 52 below,
 this must match the CSV location you will use. */
 
 CREATE TABLE public.hw5
