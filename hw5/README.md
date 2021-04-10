@@ -34,7 +34,7 @@ Open TableCreateAndImportScript.sql and modify line 47 to point to your data dir
 Run the following to create all the SQL tables required to run this script
 
 The configuration may need to be changed in main.py on lines 11 & 12:
-connection = psycopg2.connect(user="postgres",
+connection = psycopg2.connect(user="devUser",
 password="",
 
 ```
