@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% block content %}
+
+<h1>{{display_html}}</h1>
+
+{% for datalist in data %}
+<h1>{{labels_html[loop.index]}}</h1>
+{% for rows in datalist %}
+<hr />
+
+<h2>Kmeans Cluster {{loop.index}}</h2>
+<table class="table">
+  <thead>
+    <tr>
+      {% for item in column_html %}
+      <th>{{item}}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in rows %}
+    <tr>
+      {% for cols in row %}
+      <td style="width: 100px">{{cols}}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endfor %} {%endfor%} {% endblock %}

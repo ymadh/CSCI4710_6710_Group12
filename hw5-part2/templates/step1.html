@@ -1,0 +1,84 @@
+{% extends "base.html" %} {% block content %}
+
+<h1>{{display_html}}</h1>
+
+<h2>{{labels_html[0]}}</h2>
+<table class="table">
+  <thead>
+    <tr>
+      {% for item in column_html %}
+      <th>{{item}}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in group1 %}
+    <tr>
+      {% for data in row %}
+      <td>{{ data }}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<h2>{{labels_html[1]}}</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      {% for item in column_html %}
+      <th>{{item}}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in group2 %}
+    <tr>
+      {% for data in row %}
+      <td>{{ data }}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<h2>{{labels_html[2]}}</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      {% for item in column_html %}
+      <th>{{item}}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in group3 %}
+    <tr>
+      {% for data in row %}
+      <td>{{ data }}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<h2>{{labels_html[3]}}</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      {% for item in column_html %}
+      <th>{{item}}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in group4 %}
+    <tr>
+      {% for data in row %}
+      <td>{{ data }}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
