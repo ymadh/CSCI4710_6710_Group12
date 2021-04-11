@@ -5,6 +5,7 @@ import psycopg2
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import and_
+from flask import request, jsonify
 
 app = Flask(__name__)
 
@@ -15,10 +16,19 @@ connection = psycopg2.connect(user="postgres",
                               database="group12")
 
 # all data
-cursor = connection.cursor()
-allDataQuer = "select * from hw5"
-cursor.execute(allDataQuer)
-allData = cursor.fetchall()
+
+
+def query_db(query, args=(), one=False):
+    cur = connection.cursor()
+    cur.execute(query, args)
+    r = [dict((cur.description[i][0], value)
+              for i, value in enumerate(row)) for row in cur.fetchall()]
+    return (r[0] if r else None) if one else r
+
+
+allDataSQL = query_db('select * from hw5')
+allData = json.dumps(allDataSQL)
+
 
 # step 1
 cursor = connection.cursor()
@@ -76,6 +86,7 @@ column_names = ["index", "country", "age", "gender", "fear", "anxious", "angry",
 def index():
     return render_template('index.html')
 
+
 @app.route('/alldata')
 def alldata():
     labels = ['All Data']
@@ -84,6 +95,12 @@ def alldata():
                            column_html=column_names,
                            allData=allData
                            )
+
+
+@app.route('/alldataapi')
+def alldataapi():
+    return allData
+
 
 @app.route('/step1')
 def step1():
@@ -96,6 +113,7 @@ def step1():
                            group3=group3Data,
                            group4=group4Data
                            )
+
 
 @app.route('/step2')
 def step2():
@@ -171,6 +189,7 @@ def step3():
                            column_html=column_names,
                            data=data
                            )
+
 
 if __name__ == '__main__':
     app.debug = True
