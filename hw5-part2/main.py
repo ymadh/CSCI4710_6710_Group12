@@ -29,6 +29,15 @@ def query_db(query, args=(), one=False):
 allDataSQL = query_db('select * from hw5')
 allData = json.dumps(allDataSQL)
 
+# country list
+
+
+def get_country():
+    cursor = connection.cursor()
+    countryQuery = "select country from hw5 group by country"
+    cursor.execute(countryQuery)
+    return json.dumps(cursor.fetchall())
+
 
 # step 1
 cursor = connection.cursor()
@@ -97,9 +106,14 @@ def alldata():
                            )
 
 
-@app.route('/alldataapi')
+@app.route('/api/alldata')
 def alldataapi():
-    return allData
+    return json.dumps(allData)
+
+
+@app.route('/api/countries')
+def countries():
+    return get_country()
 
 
 @app.route('/step1')
