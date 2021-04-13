@@ -114,6 +114,17 @@ def alldataapi():
 @app.route('/api/countries')
 def countries():
     return get_country()
+    
+@app.route('/api/query_survey_results/<country_name>')
+def query_survey_results(country_name = ''):
+	cursor = connection.cursor()
+	countryHasDataQuery = "select count(*) from hw5 where country = %s" % (country_name)
+	cursor.execute(countryHasDataQuery)
+	if(cursor.fetchall() > 0):
+		survey_query_data =  {'user_data': [country_name + " does have survey data"]}
+	else:
+		survey_query_data =  {'user_data': [country_name + " does not have any survey data"]}
+	return json.dumps(survey_query_data)
 
 
 @app.route('/step1')

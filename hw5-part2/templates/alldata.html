@@ -1,5 +1,6 @@
 {% extends "base.html" %} {% block styles %}
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
 <script src="https://datamaps.github.io/scripts/datamaps.world.min.js"></script>
@@ -10,6 +11,9 @@
 <div
   id="container"
   style="position: relative; width: 900px; height: 600px"
+></div>
+<div
+  id="result_p"
 ></div>
 <script>
   // get countries from api and iterate over them
@@ -402,11 +406,24 @@
         defaultFill: "green",
       },
       data: countries,
-    });
+    
 
     // Draw a legend for this map
-    map.legend();
+
+    done: function (datamap){
+    	datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography){
+    	console.log(geography.properties.name);
+    	var tmp_url = "/api/query_survey_results/" + geography.properties.name;
+    	$.get(tmp_url, function(data, status){
+    		$("#container").hide();
+    		console.log(status);
+    		$("#result_p").text(JSON.parse(data)['user_data']);
+    	});
+    	});
+    }
   });
+});
+
 </script>
 
 <!-- <table class="table">
