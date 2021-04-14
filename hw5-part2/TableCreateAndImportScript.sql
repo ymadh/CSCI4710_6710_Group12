@@ -1,6 +1,6 @@
-CREATE USER devUser with SUPERUSER;
-CREATE DATABASE group12 with owner devUser;
-\c group12;
+-- CREATE USER devUser with SUPERUSER;
+-- CREATE DATABASE group12 with owner devUser;
+-- \c group12;
 
 --create table script
 
@@ -44,7 +44,7 @@ ALTER TABLE hw5
 	
 --Add in info (you would need to change the file path)
 -- copy hw5 FROM '/home/james/hw5/CSCI4710_6710_Group12/hw5/data/project5csv.csv' DELIMITER ',' CSV HEADER;
-copy hw5 FROM '/Users/adunphy/Sites/CSCI4710/CSCI4710-group12/hw5/data/project5csv.csv' DELIMITER ',' CSV HEADER;
+copy hw5 FROM '/Users/adunphy/Sites/CSCI4710/CSCI4710-group12/hw5-part2/data/project5csv.csv' DELIMITER ',' CSV HEADER;
 
 
 CREATE TABLE public.hw5_group1 as SELECT * FROM public.hw5 where gender = 'Male' and age <= 35;

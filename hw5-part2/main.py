@@ -26,9 +26,10 @@ def query_db(query, args=(), one=False):
     return (r[0] if r else None) if one else r
 
 
-allDataSQL = query_db('select * from hw5')
-allData = json.dumps(allDataSQL)
-
+cursor = connection.cursor()
+allDataQuer = "select * from hw5"
+cursor.execute(allDataQuer)
+allData = cursor.fetchall()
 # country list
 
 

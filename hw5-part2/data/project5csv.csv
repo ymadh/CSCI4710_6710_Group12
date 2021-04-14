@@ -22,7 +22,7 @@ index,What country do you live in?,How old are you?,What is your gender?,To what
 21,Romania,15,Female,5,5,3,1,5,Anger,Don't know  ,Family,Student
 22,Romania,14,Male,1,2,5,3,4,Anger,That I can't go fishing and can't meet up with friends,Family,Student
 23,Romania,18,Female,3,4,5,2,4,Anger,Feeling like I’m wasting some of the best years of my life. ,Family,Student
-24,UK,57,Male,3,3,3,1,5,"Annoyed, frustrated","Being on lockdown, the idiots on social media and the idiots still gathering in groups out on the streets.",Pandemic,Carer
+24,United Kingdom,57,Male,3,3,3,1,5,"Annoyed, frustrated","Being on lockdown, the idiots on social media and the idiots still gathering in groups out on the streets.",Pandemic,Carer
 25,USA,48,Male,3,4,1,3,2,Anxiety,worried about family getting the virus and not enough hospital capacity,Family,-1
 26,Romania,37,Female,4,5,2,1,3,Anxiety,Fear of unknown ,Reading,-1
 27,USA,70,Female,2,4,2,1,1,Anxiety,Uncertainty ,Family,-1
@@ -90,8 +90,8 @@ index,What country do you live in?,How old are you?,What is your gender?,To what
 89,France,54,Male,3,4,2,3,4,Anxiety,dark perspectire for the near future,Family,Educator
 90,USA,17,Female,3,4,4,1,4,Anxiety,The uncertainty of the situation because it is unprecedented ,Friends,Student
 91,USA,72,Male,2,3,3,3,4,Anxiety,Never knowing what to do,Family,Retired
-92,UK,38,Female,4,5,2,3,3,Anxiety,Thinking about my elderly parents in a different country who I can’t reach. Worrying about the people who I work with who have. I job security. Wondering if I will lose my job. Hoping my partner who is self employed will be okay. Worrying about my single friend who lives alone who we can’t see in the flesh. Doubtful about the skill and integrity of our political leaders. They will let the workers in our health service down and endanger them. But - I am enjoying extra time and space and I am inspired by the local and international solidarity and the incredible voluntary effort. ,Friends,Creative Director 
-93,UK,68,Male,3,5,4,2,4,Anxiety,"There is so much uncertainty is all aspects of life:  personal health, personal survival, business income (mainly ""lack of it""), impossibility of getting together and sharing meals with friends, no idea how long the UK Lockdown must go on for, etc.  Even though within 2 years we should be over it, and despite the damage, things will bounce back with a rebound.  Let us be motivated to live EVERY day to the full - right now, as well as when we are totally free to socialise again.  What joy can we bring to others, today, tomorrow and every day thereafter?  Starting NOW!     ",Family,Maze Designer
+92,United Kingdom,38,Female,4,5,2,3,3,Anxiety,Thinking about my elderly parents in a different country who I can’t reach. Worrying about the people who I work with who have. I job security. Wondering if I will lose my job. Hoping my partner who is self employed will be okay. Worrying about my single friend who lives alone who we can’t see in the flesh. Doubtful about the skill and integrity of our political leaders. They will let the workers in our health service down and endanger them. But - I am enjoying extra time and space and I am inspired by the local and international solidarity and the incredible voluntary effort. ,Friends,Creative Director 
+93,United Kingdom,68,Male,3,5,4,2,4,Anxiety,"There is so much uncertainty is all aspects of life:  personal health, personal survival, business income (mainly ""lack of it""), impossibility of getting together and sharing meals with friends, no idea how long the UK Lockdown must go on for, etc.  Even though within 2 years we should be over it, and despite the damage, things will bounce back with a rebound.  Let us be motivated to live EVERY day to the full - right now, as well as when we are totally free to socialise again.  What joy can we bring to others, today, tomorrow and every day thereafter?  Starting NOW!     ",Family,Maze Designer
 94,USA,75,Male,3,4,1,3,5,Anxiety,difficulties in navigating daily responsibilities,Family,Self employed writer 
 95,USA,56,Female,3,5,2,3,4,Anxiety,"The unkown, change in routine, change in work , limited face to face interactions, reacting to others fear and the News Repots",Family,Inclusion Consultant for young children in need of Special Education
 96,USA,65,Female,3,4,2,1,3,Anxiety,The unknown.,Family,Retired 
@@ -152,14 +152,14 @@ index,What country do you live in?,How old are you?,What is your gender?,To what
 151,Switzerland,33,Female,3,4,1,1,4,Anxiety,Not knowing,Family,HR Partner
 152,Switzerland ,28,Female,3,4,2,2,2,Anxiety,"uncertainty about the future, concern for loved ones",Being alone,Sales Professional 
 153,Switzerland,43,Female,3,4,3,3,2,Anxiety,"The unknown in timeframe, consequences, permanent changes.",Family,Events Operations
-154,UK,33,Male,3,3,2,2,4,Anxiety,Not knowing about the immediate future. no planning. too much work.,Friends,Economist
+154,United Kingdom,33,Male,3,3,2,2,4,Anxiety,Not knowing about the immediate future. no planning. too much work.,Friends,Economist
 155,Switzerland,30,Female,4,5,3,2,3,Anxiety,Impacting future plans,Family,-1
 156,Switzerland,31,Female,4,4,2,1,5,Anxiety,"The closures of pretty much everything, made travel plans but cant go now, cant be with family as the result ",Friends,Project Manager 
 157,Switzerland,32,Male,4,4,3,1,2,Anxiety,Fear of lost income,Being in nature - hiking and mountain biking,"Community Lead, Asia Pacific (WEF)"
 158,Switzerland,26,Female,2,4,4,2,4,Anxiety,"I feel there is a lot of uncertainty around my job, family and loved ones and my ability to see them and ability to fulfill my dreams. I remember the impacts of the 2008 financial crisis and the thought of going back to that economic state gives me a great amount of anxiety because it was very difficult financially. ",Family,Acceleration Team Fellow at the World Economic Forum
 159,USA,42,Male,3,3,3,2,2,Anxiety,Financial security and planning for the future of my family.,Family,Relationship Manager
 160,Switzerland,28,Female,3,4,2,1,3,Anxiety,The uncertainty,Family,WEF
-161,UK,46,Male,4,5,4,3,3,Anxiety,"The uncertainty - of social interactions, but also (as a self-employed person working in theatre) of my professional future. ",Family,Composer & teacher
+161,United Kingdom,46,Male,4,5,4,3,3,Anxiety,"The uncertainty - of social interactions, but also (as a self-employed person working in theatre) of my professional future. ",Family,Composer & teacher
 162,Canada,48,Male,4,4,1,2,4,Anxiety,Not knowing what might happen. The fear of dying alone and unable to breathe.,Working on art and music.,Artist & Educator
 163,USA,65,Female,3,4,1,2,3,Anxiety,"I suppose it’s that I don’’t feel in control.  The virus can affect almost anyone.  And, it’s silent.  I am getting better at dealing with the anxiety as I navigate the new normal.",Family,Retired
 164,Canada,41,Female,4,4,3,2,3,Anxiety,"Not knowing if I or my house-mates are exposed, not knowing when I can go back to work.",walking with friends,"Technical production, performing arts"
@@ -170,7 +170,7 @@ index,What country do you live in?,How old are you?,What is your gender?,To what
 169,USA,42,Female,5,4,2,2,4,Anxiety,Stories from New York and Italy,Family,Physician
 170,USA,77,Female,5,4,4,3,4,Anxiety,"Worried about our family, &dear hub.some med probs",Family,"therapist,, teaching writing and teaching therapy"
 171,USA,42,Female,3,2,1,1,3,Anxiety,Uncertainty,God,Manager
-172,UK,79,Female,3,4,4,1,3,Anxiety,We watch too much news and it makes us anxious.,Family,Retired teacher
+172,United Kingdom,79,Female,3,4,4,1,3,Anxiety,We watch too much news and it makes us anxious.,Family,Retired teacher
 173,USA,28,Female,3,3,2,1,3,Anxiety,The unknown ,Praying ,Teacher 
 174,Cyprus,29,Female,3,2,4,4,5,Anxiety,The fear of the unknown is the hardest one for me to deal with,Family,Programs Officer
 175,USA,70,Female,3,5,5,1,3,Anxiety,I am worried about the future of my children and grandchildren,Family,Retired
@@ -224,8 +224,8 @@ index,What country do you live in?,How old are you?,What is your gender?,To what
 223,USA,23,Female,5,5,5,1,5,Fear,I am afraid that I will love my loved ones if they become ill or that I will become ill. ,Family,Graduate Student
 224,USA,19,Female,4,2,3,1,3,Fear,"I am not worried about myself, but I am worried about family and friends who may be more vulnerable as a result of their own health complications or a larger risk of being exposed. I tend to stay calm in situations like this, but I still feel fear for families and individuals all around who are or will be negatively impacted by the pandemic.",Family,Student 
 225,USA,23,Male,4,4,2,1,4,Fear,"I am worried about my work causing me to infect those around me. I'm less afraid of catching it myself, as much as I am of spreading it to others without knowing it.",Friends,Mental Health Counselor
-226,UK,58,Female,5,3,4,1,4,Fear,Because there are people not following the rules putting everyone at risk. Also the NHS isn’t going to be able to cope.,Friends,CEO of a charity 
-227,UK,50,Female,5,5,4,1,5,Fear,Worried about family and friends being so far away and my own health,"Keeping myself busy, to stop myself going insane",Civil servant
+226,United Kingdom,58,Female,5,3,4,1,4,Fear,Because there are people not following the rules putting everyone at risk. Also the NHS isn’t going to be able to cope.,Friends,CEO of a charity 
+227,United Kingdom,50,Female,5,5,4,1,5,Fear,Worried about family and friends being so far away and my own health,"Keeping myself busy, to stop myself going insane",Civil servant
 228,USA,69,Female,4,3,2,1,3,Fear,Danger of death,Family,Educator
 229,USA,39,Female,4,4,2,2,3,Fear,"I have loved ones who would be at a greater risk, and I want to do my part to keep them safe. ",Sewing projects,Sales
 230,USA,86,Male,4,3,2,1,4,Fear,I am in high risk group because of age and several health conditions.,"Contacting others by the telephone, facebook and  e-mails",Retired Physician
@@ -260,11 +260,11 @@ index,What country do you live in?,How old are you?,What is your gender?,To what
 259,Romania,45,Female,4,3,2,4,2,Happiness,I stai more time with my love,Family,Psychologist
 260,USA,21,Female,3,3,3,4,3,Happiness,"I am so happy to get the chance to be home with my family during this time. I am able to focus on self-care, doing things such as yoga, gardening, cooking & baking, and spend quality time with my family members and pets. ",Family,Student
 261,Canada ,54,Male,3,3,1,5,3,Happiness,I am on the road constantly. I have literally lived out of a suitcase since 2015. I am exhausted and need a break. I’m also so focused on touring old work that I didn’t have time to make new work. I was thinking of quitting but it’s the only thing I’ve ever done. This is forcing my hand perhaps. I can survive without a problem for a while. I’m sad that others are suffering but I haven’t been this anxiety free in years. It’s great you’re doing this. I wrote a book about how children and young people should be taken more seriously. It’s called Haircuts by Children and Other Evidence for a New Social Contract. Send me a message and I’ll email you a PDF darren@mammalian.ca my name is Darren O’Donnell ,Meditation ,Theatre director 
-262,UK,32,Female,1,2,1,3,2,Happiness,Spending quality time with my children. ,Family,Director of an arts company 
-263,UK,45,Female,2,3,1,4,2,Happiness,We are all being given extra time and in my case space to catch up with the people and hobbies/work that normally have to set aside due to making a living.,Friends,Chef
+262,United Kingdom,32,Female,1,2,1,3,2,Happiness,Spending quality time with my children. ,Family,Director of an arts company 
+263,United Kingdom,45,Female,2,3,1,4,2,Happiness,We are all being given extra time and in my case space to catch up with the people and hobbies/work that normally have to set aside due to making a living.,Friends,Chef
 264,Canada,55,Female,4,4,1,3,3,Happiness,I’m moved by the goodness of people at this time.,Family,Psychologist
 265,Romania ,55,Female,1,1,3,1,3,Happiness,Living ,Reading,Teacher 
-266,UK ,53,Female,2,2,3,4,3,Happiness,"The relentless, unapologetic beauty of Nature and the advance of Spring",Family,Consultant
+266,United Kingdom,53,Female,2,2,3,4,3,Happiness,"The relentless, unapologetic beauty of Nature and the advance of Spring",Family,Consultant
 267,USA,17,Female,1,3,3,4,3,Happiness,"I think happiness is having the biggest impact on me because having a positive mentality has been the biggest asset in being able to keep productive and allows me to continue to keep myself engaged in things even though I am at home. I feel happy when I talk to friends and family, exercise, and play music","Spending the extra time with family, talking with my friends, getting to exercise and play and practice piano and music",Student
 268,USA,16,Female,2,2,2,4,3,Happiness,The coronavirus has given me a new perspective and allowed for me to start changing my habits(mentally and physically),Being alone,Student
 269,Romania,14,Female,1,1,1,5,1,Happiness,Nothing,S? faci sport,Student
@@ -324,7 +324,7 @@ index,What country do you live in?,How old are you?,What is your gender?,To what
 323,USA,60,Female,1,1,1,1,1,"Peace, God is in control",Faith in God,Family,Retired
 324,Canada,39,Female,1,2,1,4,3,Peaceful,Knowing that we are all in this together. Remaining moment to moment. I no longer have anxiety and pressures from work. I am much calmer and able to take life slower.,Family,"Theatre artist, actress, director and producer"
 325,USA,38,Female,3,3,1,5,3,Peaceful & Inspired,"The gift of time has afforded me the opportunity to ground, slow down, reevaluate what's important in my life. With the quietude, yoga, gratitude,self study, and mediataion, Im able to see and feel more clearly as I was going in so many different directions prior to the required isolation brought on by the pandemic. I was burning out.The time to myself has afforded me the opportunity to read, paint, write, reflect and still connect with others. I'm sad about people suffering. That noted, suffering is part of the human condition.  My illusion of control is where I fall into the fear trap & anxiety rears it's head. But when I sit in stillness I realize that the Universe/Divine/God is in charge and surrounding circumstance are out of my control, even if i don'tfully understand. My faith in this or something better sustains me.I can only control what I can control and if I get sick and die, then, as much as I'm not ready to leave, there is little I can do as it's my expiration date. At the end of the day, appreciation for what is good and savoring those moments keeps me peaceful, fulfilled and inspired. Lastly, seeing so many people come together gives me great joy and hope for humanity. ","The gift of time. It's not just one factor but a conglommeration - the mix of communication with family, reading ,exercising, time for creating, and so forth",Educator
-326,Ireland l,26,Male,2,2,2,3,3,Powerlessness,"Stuck at home, no control over my life",Reading,Teacher
+326,Ireland,26,Male,2,2,2,3,3,Powerlessness,"Stuck at home, no control over my life",Reading,Teacher
 327,USA,-1,-1,1,1,1,1,1,Really no emaotion for me. Just more prayer.,I trust in our Lord Jesus Christ.,Prayer,-1
 328,Portugal,12,Female,2,1,1,1,3,Sadness,Beacuse milions of people died,Family,Student
 329,USA,66,Female,3,2,1,1,1,Sadness,For people who are suffering and fearful. ,Friends,-1
@@ -348,7 +348,7 @@ index,What country do you live in?,How old are you?,What is your gender?,To what
 347,USA,23,Female,4,4,2,2,5,Sadness,"The response to the virus, the stories of people I know being impacted, the stories of people I don't know being impacted, nostalgia that comes from spending more time with my family, my seeming inability to help during a time when so many people need help",Family,Community Residence Counselor
 348,USA,18,Female,3,2,2,1,5,Sadness,I’m holed up in my room without my friends :((,Family,Student
 349,USA,26,Female,4,4,3,1,4,Sadness,"I am missing a lot of family events, travel with friends, etc., and I feel lonely not being able to see my loved ones/friends/coworkers during the quarantine.",Exercising,I work for a nonprofit
-350,UK,27,Female,3,4,3,1,5,Sadness,Because it has hurt so many people.,Friends,Translator
+350,United Kingdom,27,Female,3,4,3,1,5,Sadness,Because it has hurt so many people.,Friends,Translator
 351,Germany,71,Male,2,2,2,1,4,Sadness,All the people who died and all the people who are alone with nobody who cares,Family,Senior Professor
 352,USA,71,Female,4,4,4,1,5,Sadness,Number of people who need help and have no way to gt it, indifference to varied needs, insensitivity to the reality of others
 353,USA,62,Female,3,4,2,1,5,Sadness,I'm sad because i am not able to interact with my friends in person,Family,Scientist
@@ -404,12 +404,12 @@ index,What country do you live in?,How old are you?,What is your gender?,To what
 403,Romania,18,Female,3,5,4,2,5,Sadness,"the whole period with the pandemic in which I can't see many of my loved ones, the cancellation of all festive events and some family health problems (not related to the virus).",Other,Student
 404,Romania,18,Male,1,4,4,2,5,Sadness,To listen to music,Family,Student
 405,Romania,15,Male,3,3,2,4,2,Sadness,I can't think of an answer,Family,Student
-406,Palestine ,45,Male,3,3,4,1,3,Stress,"Uncertainty, lack of clarity ",Family,Executive director 
-407,spain,43,Male,1,1,1,1,2,Surveillance,We have a risk that we need control it,Being alone,Lawyer
+406,Palestine,45,Male,3,3,4,1,3,Stress,"Uncertainty, lack of clarity ",Family,Executive director 
+407,Spain,43,Male,1,1,1,1,2,Surveillance,We have a risk that we need control it,Being alone,Lawyer
 408,Canada,59,Female,2,2,1,4,3,Transformation ,"Everything except how I behave is out of my control, but I can choose to feel grateful for what I do have, good health, available food, comfortable surroundings.  I can allow this very serious health concern be transformative.  I feel the pressures put on populations have given the physical world a break, kind of like a bit of natural medicine.",Technology that has allowed me to not worry about my family and loved ones,Retired
 409,Portugal,47,Female,2,1,1,1,3,Uncertainty,Not knowing how tomorrow will be,Work.      Thank you! Lots of hugs from Portugal!,-1
 410,Switzerland,31,Female,3,4,2,4,5,Uncertainty,Not knowing when it will end,Taking time to do things I never had time before: Trying hobbies for the first time,Impact Measurement Specialist
 411,Canada,23,Male,4,4,3,2,3,Uncertainty ,It is still to early to understand the degree in which this will impact the world.,Friends,Unemployed
 412,USA,79,Male,5,4,1,3,4,Worry,Worry is an e-motion (energy in motion) which inhabits me and rears it’s head often in my life.  It is very active at this time.  During my meditations I beginning to see how worry is connected to other e-motions. ,Friends,Retired 
 413,USA,70,Female,1,2,1,1,1,Worry,Concerned for all who are sick and for the effects on the world long term,TV,Retired teacher
-414,Usa,73,Female,3,4,2,1,3,Anxiety,Not being able to be with friends and family,Family,Professor 
+414,USA,73,Female,3,4,2,1,3,Anxiety,Not being able to be with friends and family,Family,Professor 

@@ -327,7 +327,7 @@ const COUNTRY_CODES = [
     { name: "Ukraine", "alpha-3": "UKR", "country-code": "804" },
     { name: "United Arab Emirates", "alpha-3": "ARE", "country-code": "784" },
     {
-        name: "United Kingdom of Great Britain and Northern Ireland",
+        name: "United Kingdom",
         "alpha-3": "GBR",
         "country-code": "826",
     },
