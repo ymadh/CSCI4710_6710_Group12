@@ -23,10 +23,20 @@
     function (data, status) {
       var dataObj = JSON.parse(data);
       var dataArr = [];
-      var index = 1;
+      var edgeArr = [];
+      var counter = 0;
+      var groupName = "";
       dataObj.forEach((item) => {
+        switch (counter) {
+          case 0:
+            groupName = "Group 1";
+            break;
+          case 1:
+            groupName = "Group 2";
+            break;
+        }
         dataArr.push({
-          name: "Group " + index,
+          name: groupName,
           question_answers: [
             -1,
             "This group of users are from USA, old, and split based on Kmeans algorithm",
@@ -35,6 +45,7 @@
           color_hover: "#bf00ff",
         });
 
+        var elementCounter = 0;
         item.forEach((element) => {
           dataArr.push({
             name: element[3] + " Age: " + element[2],
@@ -42,23 +53,20 @@
             color_original: "#4000ff",
             color_hover: "#00ffff",
           });
+
+          edgeArr.push({ source: counter, target: elementCounter });
+          elementCounter++;
         });
-        index++;
+
+        counter++;
       });
-      console.log(dataArr);
 
       var dataset = {
         nodes: dataArr,
-        edges: [
-          // different from our previous example
-          // this part should be dynamically generated based on the index
-          // hint if statements, push (i.e. append), e.g., dataset.edges.push({source:0,target:5})
-          { source: 0, target: 1 },
-          { source: 0, target: 2 },
-          { source: 3, target: 4 },
-          { source: 3, target: 5 },
-        ],
+        edges: edgeArr,
       };
+
+      console.log(dataset);
 
       // Constructs a new force-directed layout, used for graph a lot
       var force = d3.layout
