@@ -195,4 +195,19 @@
   );
 </script>
 
+<form>
+  <label for="gender">Gender:</label>
+  <select id="gender">
+    <option id="test">Male</option>
+    <option id="test2">Female</option>
+  </select>
+
+  <label for="age">Age:</label>
+  <select id="age">
+    <option id="younger">35 & Under</option>
+    <option id="older">Over 35</option>
+  </select>
+  <input type="submit" value="Submit" onClick="/api/query_survey_results/<country_name>/<gender>/<age>">
+</form>
+
 {% endblock %}
