@@ -2,6 +2,8 @@ import os
 import json
 import util
 import psycopg2
+import numpy as np
+from urllib.parse import unquote
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import and_
@@ -118,20 +120,26 @@ def countries():
 
 
 @app.route('/api/query_survey_results/<country_name>')
-def query_survey_results(country_name=''):
+def query_survey_results(country_name):
+    country_name = str(country_name)
+    decodedCountryName = unquote(country_name)
+    if (decodedCountryName == "United States of America"):
+    	decodedCountryName = "USA"
     cursor = connection.cursor()
-    countryHasDataQuery = "select * from hw5 where country = 'USA' and age < 35 and gender = 'Male'"
+    countryHasDataQuery = "select * from hw5 where country = '" + decodedCountryName + "'"
+    # + " and age < 35 and gender = 'Male'"
     cursor.execute(countryHasDataQuery)
     survey_query_data = cursor.fetchall()
-    label_group = util.cluster_user_data(survey_query_data)
-    retData = util.split_user_data(survey_query_data, label_group)
-
-    return json.dumps(retData)
-
-
+    if (len(survey_query_data) > 9):
+        label_group = util.cluster_user_data(survey_query_data)
+        retData = util.split_user_data(survey_query_data, label_group)
+        return json.dumps(retData)
+    else:
+        return json.dumps([survey_query_data])
+        
 @app.route('/query_survey_results/<country_name>')
-def query_survey_country(country_name=''):
-    return render_template('country.html')
+def query_survey_country(country_name):
+    return render_template('country.html', country_name_html=country_name)
 
 
 @app.route('/step1')

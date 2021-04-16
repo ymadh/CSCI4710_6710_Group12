@@ -28,7 +28,7 @@ def split_user_data(input_data, labels, n_clusters=3):
         tmp_indices = np.where(labels == i)[0]
         result_list.append([input_data[i] for i in tmp_indices])
 
-    return result_list
+    return result_list 
     
 def split_data_for_hw(input_data):
 	
