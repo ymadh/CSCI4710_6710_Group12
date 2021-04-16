@@ -24,19 +24,14 @@
       var dataObj = JSON.parse(data);
       var dataArr = [];
       var edgeArr = [];
+      var source = 0;
       var counter = 0;
-      var groupName = "";
-      dataObj.forEach((item) => {
-        switch (counter) {
-          case 0:
-            groupName = "Group 1";
-            break;
-          case 1:
-            groupName = "Group 2";
-            break;
-        }
+      // each item is an kmeans group - with an array of records
+      // how do we generate the description?
+      dataObj.forEach((item, index) => {
+        source = counter;
         dataArr.push({
-          name: groupName,
+          name: "GROUP " + (index + 1),
           question_answers: [
             -1,
             "This group of users are from USA, old, and split based on Kmeans algorithm",
@@ -44,8 +39,9 @@
           color_original: "#ff0000",
           color_hover: "#bf00ff",
         });
+        counter++;
 
-        var elementCounter = 0;
+        // each element is a row in the table
         item.forEach((element) => {
           dataArr.push({
             name: element[3] + " Age: " + element[2],
@@ -53,12 +49,9 @@
             color_original: "#4000ff",
             color_hover: "#00ffff",
           });
-
-          edgeArr.push({ source: counter, target: elementCounter });
-          elementCounter++;
+          edgeArr.push({ source: source, target: counter });
+          counter++;
         });
-
-        counter++;
       });
 
       var dataset = {
