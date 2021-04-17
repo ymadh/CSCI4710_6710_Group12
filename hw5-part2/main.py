@@ -119,15 +119,27 @@ def countries():
     return get_country()
 
 
-@app.route('/api/query_survey_results/<country_name>')
-def query_survey_results(country_name):
+@app.route('/api/query_survey_results/<country_name>/<gender>/<age>')
+def query_survey_results(country_name, gender, age):
+    age = 0
+    gender = ''
+    if "age" in request.form:
+        age = request.form['age']
+        if age == '35 & Under':
+            age = 'age <= 35'
+        elif age == 'Over 35':
+            age = 'age > 35'
+    if "gender" in request.form:
+        gender = request.form['gender']
     country_name = str(country_name)
     decodedCountryName = unquote(country_name)
     if (decodedCountryName == "United States of America"):
     	decodedCountryName = "USA"
     cursor = connection.cursor()
-    countryHasDataQuery = "select * from hw5 where country = '" + decodedCountryName + "'"
-    # + " and age < 35 and gender = 'Male'"
+    if age == 0:
+        countryHasDataQuery = "select * from hw5 where country = '" + decodedCountryName + "'"
+    if age != 0:
+        countryHasDataQuery = "select * from hw5 where country = '" + decodedCountryName + "' and " + age + " and gender = '" + gender + "'"
     cursor.execute(countryHasDataQuery)
     survey_query_data = cursor.fetchall()
     if (len(survey_query_data) > 9):
@@ -137,24 +149,37 @@ def query_survey_results(country_name):
     else:
         return json.dumps([survey_query_data])
 
-@app.route('/api/query_survey_results/<country_name>/<gender>/<age>')
-def query_gender_age_results(country_name, gender, age):
+'''@app.route('/api/select_results/<country_name>', methods=['POST', 'GET'])
+def query_gender_age_results(country_name):
+    age = request.form['age']
+    gender = request.form['gender']
     if age == '35 & Under':
         age = 'age <= 35'
     elif age == 'Over 35':
         age = 'age > 35'
+    country_name = str(country_name)
     decodedCountryName = unquote(country_name)
     if (decodedCountryName == "United States of America"):
         decodedCountryName = "USA"
     cursor = connection.cursor()
-    countryDataQuery = "select * from hw5 where country = '" + decodedCountryName + "' and '" + age + "' and '" + gender + "'"
+    countryDataQuery = "select * from hw5 where country = '" + decodedCountryName + "' and " + age + " and gender = '" + gender + "'"
+    cursor.execute(countryDataQuery)
     survey_results = cursor.fetchall()
-    return json.dumps([survey_results])
+    if (len(survey_results) > 9):
+        label_group = util.cluster_user_data(survey_results)
+        retData = util.split_user_data(survey_results, label_group)
+        return json.dumps(retData)
+    else:
+        return json.dumps([survey_results])'''
         
 @app.route('/query_survey_results/<country_name>')
 def query_survey_country(country_name):
-    return render_template('country.html', country_name_html=country_name)
-
+    if "gender" in request.form:
+        gender = request.form['gender']
+        age = request.form['age']
+        return render_template('country.html', country_name_html=country_name, gender_html=gender, age_html=age)
+    else:
+        return render_template('country.html', country_name_html=country_name)
 
 @app.route('/step1')
 def step1():
@@ -167,7 +192,6 @@ def step1():
                            group3=group3Data,
                            group4=group4Data
                            )
-
 
 @app.route('/step2')
 def step2():

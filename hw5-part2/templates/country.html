@@ -21,7 +21,7 @@
 
     
   $.get(
-    "/api/query_survey_results/{{ country_name_html }}",
+    "/api/query_survey_results/{{ country_name_html }}/{{ gender_html }}/{{ age_html }}",
     function (data, status) {
       var dataObj = JSON.parse(data);
       var dataArr = [];
@@ -197,15 +197,15 @@
   );
 </script>
 
-<form action="/api/query_survey_results/<country_name>/<gender>/<age>">
+<form action="/query_survey_results/{{ country_name_html }}">
   <label for="gender">Gender:</label>
-  <select id="gender">
+  <select name="gender">
     <option id="Male">Male</option>
     <option id="Female">Female</option>
   </select>
 
   <label for="age">Age:</label>
-  <select id="age">
+  <select name="age">
     <option id="35 & Under">35 & Under</option>
     <option id="Over 35">Over 35</option>
   </select>
