@@ -200,14 +200,14 @@
 <form action="/query_survey_results/{{ country_name_html }}">
   <label for="gender">Gender:</label>
   <select name="gender">
-    <option id="Male">Male</option>
-    <option id="Female">Female</option>
+    <option value="Male">Males</option>
+    <option value="Female">Females</option>
   </select>
 
   <label for="age">Age:</label>
   <select name="age">
-    <option id="35 & Under">35 & Under</option>
-    <option id="Over 35">Over 35</option>
+    <option value="young">35 & Under</option>
+    <option value="old">Over 35</option>
   </select>
   <input type="submit" value="Submit">
 </form>
