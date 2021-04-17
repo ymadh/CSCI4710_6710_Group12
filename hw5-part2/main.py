@@ -12,7 +12,7 @@ from flask import request, jsonify
 app = Flask(__name__)
 
 connection = psycopg2.connect(user="postgres",
-                              password="",
+                              password="pass",
                               host="127.0.0.1",
                               port="5432",
                               database="group12")
@@ -136,6 +136,20 @@ def query_survey_results(country_name):
         return json.dumps(retData)
     else:
         return json.dumps([survey_query_data])
+
+@app.route('/api/query_survey_results/<country_name>/<gender>/<age>')
+def query_gender_age_results(country_name, gender, age):
+    if age == '35 & Under':
+        age = 'age <= 35'
+    elif age == 'Over 35':
+        age = 'age > 35'
+    decodedCountryName = unquote(country_name)
+    if (decodedCountryName == "United States of America"):
+        decodedCountryName = "USA"
+    cursor = connection.cursor()
+    countryDataQuery = "select * from hw5 where country = '" + decodedCountryName + "' and '" + age + "' and '" + gender + "'"
+    survey_results = cursor.fetchall()
+    return json.dumps([survey_results])
         
 @app.route('/query_survey_results/<country_name>')
 def query_survey_country(country_name):

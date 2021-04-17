@@ -197,19 +197,19 @@
   );
 </script>
 
-<form>
+<form action="/api/query_survey_results/<country_name>/<gender>/<age>">
   <label for="gender">Gender:</label>
   <select id="gender">
-    <option id="test">Male</option>
-    <option id="test2">Female</option>
+    <option id="Male">Male</option>
+    <option id="Female">Female</option>
   </select>
 
   <label for="age">Age:</label>
   <select id="age">
-    <option id="younger">35 & Under</option>
-    <option id="older">Over 35</option>
+    <option id="35 & Under">35 & Under</option>
+    <option id="Over 35">Over 35</option>
   </select>
-  <input type="submit" value="Submit" onClick="/api/query_survey_results/<country_name>/<gender>/<age>">
+  <input type="submit" value="Submit">
 </form>
 
 {% endblock %}
