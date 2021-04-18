@@ -38,10 +38,7 @@
       source = counter;
       dataArr.push({
         name: "GROUP " + (index + 1),
-        question_answers: [
-          -1,
-          "This group of users are from {{ country_name_html }}",
-        ],
+        question_answers: [dataObj.length, "{{ country_name_html }}"],
         color_original: "#ff0000",
         color_hover: "#bf00ff",
       });
@@ -198,6 +195,9 @@
 
   function transform_question(data) {
     if (data[8] === undefined) {
+      if (data[0] > 1) {
+        return data[1] + " including the KMeans grouping";
+      }
       return data[1];
     }
     return (
