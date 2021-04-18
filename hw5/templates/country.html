@@ -223,7 +223,7 @@
 
 <h3>
   {% if request.args.get('gender') %} Current Group:
-  {{request.args.get('age')}} {{request.args.get('gender')}} (Includes Kmeans
+  {{request.args.get('gender')}} {{request.args.get('age')}} (Includes Kmeans
   split) {% else %} All Data for this country (No Kmeans Split) {% endif %}
   <hr />
 </h3>
@@ -239,8 +239,8 @@
   <label for="age">Age:</label>
   <select name="age">
     <option selected="selected" disabled="disabled">Select</option>
-    <option value="Younger">35 & Under</option>
-    <option value="Older">Over 35</option>
+    <option value="young">35 & Under</option>
+    <option value="old">Over 35</option>
   </select>
   <input class="btn btn-primary" type="submit" value="Submit" />
   <hr />
