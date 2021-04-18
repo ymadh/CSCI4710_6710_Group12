@@ -133,9 +133,9 @@ def query_survey_results(country_name, gender='nl', age=0):
         decodedCountryName = "USA"
     cursor = connection.cursor()
     if age == 0:
-        countryHasDataQuery = "select * from hw5 where country = '" + decodedCountryName + "'"
+        countryHasDataQuery = "select * from hw5 where rtrim(country) = '" + decodedCountryName + "'"
     if age != 0:
-        countryHasDataQuery = "select * from hw5 where country = '" + \
+        countryHasDataQuery = "select * from hw5 where rtrim(country) = '" + \
             decodedCountryName + "' and " + ageForQ + " and gender = '" + gender + "'"
     cursor.execute(countryHasDataQuery)
     survey_query_data = cursor.fetchall()
