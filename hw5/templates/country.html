@@ -135,7 +135,6 @@
         // Highlight the nodes
         // nodes.style('fill', d.color_original)
         d3.select(this).style("fill", d.color_hover);
-
         $("#data-selected").html(transform_question(d.question_answers));
       })
       .on("mouseout", function (d) {
@@ -198,6 +197,9 @@
   });
 
   function transform_question(data) {
+    if (data[8] === undefined) {
+      return data[1];
+    }
     return (
       "This person works as a " +
       data[8] +
