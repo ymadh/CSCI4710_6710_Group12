@@ -31,15 +31,15 @@ Because we are now inside a virtual environment. We do not need sudo.
 
 Open TableCreateAndImportScript.sql and modify line 47 to point to your data directory
 
-run the following to create all the sql tables required to run this script
-The configuration may need to be changed in main.py on line 8&9
-connection = psycopg2.connect(user="postgres",
-password="",
+Run the following to create all the sql tables required to run this script.
+The first few lines need to be uncommented if you have not previously created the database.
 
 ```
 psql -f TableCreateAndImportScript.sql
 ```
-
+The configuration may need to be changed in main.py on line 8&9
+connection = psycopg2.connect(user="postgres",
+password="",
 Then you can start the server with:
 
 ```
