@@ -2,23 +2,45 @@ import os
 import json
 import util
 import psycopg2
+import numpy as np
+from urllib.parse import unquote
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import and_
+from flask import request, jsonify
 
 app = Flask(__name__)
 
 connection = psycopg2.connect(user="postgres",
-                              password="",
+                              password="pass",
                               host="127.0.0.1",
                               port="5432",
                               database="group12")
 
 # all data
+
+
+def query_db(query, args=(), one=False):
+    cur = connection.cursor()
+    cur.execute(query, args)
+    r = [dict((cur.description[i][0], value)
+              for i, value in enumerate(row)) for row in cur.fetchall()]
+    return (r[0] if r else None) if one else r
+
+
 cursor = connection.cursor()
 allDataQuer = "select * from hw5"
 cursor.execute(allDataQuer)
 allData = cursor.fetchall()
+# country list
+
+
+def get_country():
+    cursor = connection.cursor()
+    countryQuery = "select country from hw5 group by country"
+    cursor.execute(countryQuery)
+    return json.dumps(cursor.fetchall())
+
 
 # step 1
 cursor = connection.cursor()
@@ -76,6 +98,7 @@ column_names = ["index", "country", "age", "gender", "fear", "anxious", "angry",
 def index():
     return render_template('index.html')
 
+
 @app.route('/alldata')
 def alldata():
     labels = ['All Data']
@@ -84,6 +107,58 @@ def alldata():
                            column_html=column_names,
                            allData=allData
                            )
+
+
+@app.route('/api/alldata')
+def alldataapi():
+    return json.dumps(allData)
+
+
+@app.route('/api/countries')
+def countries():
+    return get_country()
+
+
+@app.route('/api/query_survey_results/<country_name>/<gender>/<age>/')
+@app.route('/api/query_survey_results/<country_name>//')
+def query_survey_results(country_name, gender='nl', age=0):
+
+    if age == "old":
+        ageForQ = 'age > 35'
+    else:
+        ageForQ = 'age <= 35'
+    country_name = str(country_name)
+    decodedCountryName = unquote(country_name)
+    if (decodedCountryName == "United States of America"):
+        decodedCountryName = "USA"
+    cursor = connection.cursor()
+    if age == 0:
+        countryHasDataQuery = "select * from hw5 where country = '" + decodedCountryName + "'"
+    if age != 0:
+        countryHasDataQuery = "select * from hw5 where country = '" + \
+            decodedCountryName + "' and " + ageForQ + " and gender = '" + gender + "'"
+    cursor.execute(countryHasDataQuery)
+    survey_query_data = cursor.fetchall()
+    if age != 0:
+        if (len(survey_query_data) > 9):
+            label_group = util.cluster_user_data(survey_query_data)
+            retData = util.split_user_data(survey_query_data, label_group)
+            return json.dumps(retData)
+        else:
+            return json.dumps([survey_query_data])
+    else:
+        return json.dumps([survey_query_data])
+
+
+@app.route('/query_survey_results/<country_name>/')
+def query_survey_country(country_name):
+    if request.args.get('age') != None:
+        gender = request.args.get('gender')
+        age = request.args.get('age')
+        return render_template('country.html', country_name_html=country_name, gender_html=gender, age_html=age)
+    else:
+        return render_template('country.html', country_name_html=country_name)
+
 
 @app.route('/step1')
 def step1():
@@ -96,6 +171,7 @@ def step1():
                            group3=group3Data,
                            group4=group4Data
                            )
+
 
 @app.route('/step2')
 def step2():
@@ -171,6 +247,7 @@ def step3():
                            column_html=column_names,
                            data=data
                            )
+
 
 if __name__ == '__main__':
     app.debug = True

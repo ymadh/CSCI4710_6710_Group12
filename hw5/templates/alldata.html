@@ -1,7 +1,62 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} {% block styles %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+<script src="https://datamaps.github.io/scripts/datamaps.world.min.js"></script>
+<script src="/static/countries.js"></script>
+
+{% endblock %} {% block content %}
 <h1>{{display_html}}</h1>
 
-<h2>{{labels_html[0]}}</h2>
+<div
+  id="container"
+  style="position: relative; width: 900px; height: 600px"
+></div>
+<div id="result_p"></div>
+<script>
+  // get countries from api and iterate over them
+
+  $.get("/api/countries", function (data, status) {
+    var dataObj = JSON.parse(data);
+    var countries = {};
+
+    dataObj.map((item) => {
+      let c1 = COUNTRY_CODES.find(
+        (country) =>
+          country.name === item.toString().trim() ||
+          country["alpha-3"] === item.toString().trim()
+      );
+      if (c1 && c1.hasOwnProperty("alpha-3")) {
+        countries[c1["alpha-3"]] = { fillKey: "WITH_SURVEY_DATA" };
+      } else {
+        console.log("data mismatch on country:");
+        console.log(item);
+      }
+    });
+
+    var map = new Datamap({
+      element: document.getElementById("container"),
+      fills: {
+        WITH_SURVEY_DATA: "#43a4ff",
+        defaultFill: "green",
+      },
+      data: countries,
+
+      // Draw a legend for this map
+
+      done: function (datamap) {
+        datamap.svg
+          .selectAll(".datamaps-subunit")
+          .on("click", function (geography) {
+            var tmp_url = "/query_survey_results/" + geography.properties.name;
+            window.location = tmp_url;
+          });
+      },
+    });
+  });
+</script>
+
 <table class="table">
   <thead>
     <tr>
