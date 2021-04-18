@@ -194,7 +194,7 @@
   });
 
   function transform_question(data) {
-    if (data[8] === undefined) {
+    if (data[2] === undefined) {
       if (data[0] > 1) {
         return data[1] + " including the KMeans grouping";
       }
@@ -250,13 +250,7 @@
 
 <div
   id="data-selected"
-  style="
-    margin: auto;
-    text-align: center;
-    height: 20px;
-    margin-bottom: 10px;
-    width: 800px;
-  "
+  style="margin: auto; text-align: center; margin-bottom: 10px; width: 800px"
 ></div>
 
 <div id="map"></div>
