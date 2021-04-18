@@ -218,19 +218,12 @@
   }
 </script>
 
-<div
-  style="
-    margin: auto;
-    text-align: center;
-    height: 20px;
-    margin-bottom: 10px;
-    width: 500px;
-  "
->
+<h3>
   {% if request.args.get('gender') %} Current Group:
   {{request.args.get('gender')}} {{request.args.get('age')}} (Includes Kmeans
   split) {% else %} All Data for this country (No Kmeans Split) {% endif %}
-</div>
+  <hr />
+</h3>
 
 <form action="/query_survey_results/{{ country_name_html }}">
   <label for="gender">Gender:</label>
@@ -245,6 +238,7 @@
     <option value="old">Over 35</option>
   </select>
   <input type="submit" value="Submit" />
+  <hr />
 </form>
 
 <div
@@ -254,10 +248,10 @@
     text-align: center;
     height: 20px;
     margin-bottom: 10px;
-    width: 500px;
+    width: 800px;
   "
 ></div>
 
-<div id="map" style="margin-top: 150px"></div>
+<div id="map"></div>
 
 {% endblock %}

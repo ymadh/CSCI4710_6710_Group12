@@ -12,8 +12,11 @@ html {
   max-width: 960px;
 }
 
-.pricing-header {
+h3,
+form {
   max-width: 700px;
+  margin: auto;
+  text-align: center;
 }
 
 .card-deck .card {
