@@ -7,19 +7,21 @@ db = SQLAlchemy()
 
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__, static_url_path='',
+                static_folder='static')
 
     app.config['SECRET_KEY'] = 'secret-key-goes-here'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.init_app(app)
 
     login_manager = LoginManager()
-    login_manager.login_view = 'auth.login'
+    login_manager.login_view = 'main.login'
     login_manager.init_app(app)
     from .models import User
 
-    @login_manager.user_loader
+    @ login_manager.user_loader
     def load_user(id):
         # since the user_id is just the primary key of our user table, use it in the query for the user
         return User.query.get(int(id))
