@@ -1,3 +1,4 @@
+import time
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import User
@@ -21,6 +22,7 @@ def login_post():
     if not user or not check_password_hash(user.password, password):
         flash('Please check your login details and try again.')
         # if the user doesn't exist or password is wrong, reload the page
+        time.sleep(2)
         return redirect(url_for('main.login'))
 
     # if the above check passes, then we know the user has the right credentials
