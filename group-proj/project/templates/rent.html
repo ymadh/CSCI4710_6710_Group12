@@ -1,2 +1,20 @@
-{% extends "base.html" %} {% block content %} Hello {{current_user.name}},
-would you like to rent a scooter? {% endblock %}
+{% extends "base.html" %} {% block content %} 
+
+Hello {{current_user.name}}, would you like to rent a scooter? 
+
+<hr />
+<div id="buttons"><a href="#" id="yes_button" onclick="displayRentalForm()"><button>Yes</button></a> <a href="/"><button>Not right now</button></a></div>
+
+<form action="#" id="rental_form" method="post" name="rental_form" style="display:none">
+
+	<p>form placeholder</p>
+
+</form>
+
+<script type="text/javascript">
+function displayRentalForm(){
+    $("#rental_form").css("display","block");
+    }
+</script>
+
+{% endblock %}
