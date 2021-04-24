@@ -15,3 +15,13 @@ class User(db.Model):
 
     def is_authenticated(self):
         return self._authenticated
+
+
+class Scooters(db.Model):
+    scooter_id = db.Column(db.Integer, primary_key=True)
+    scooter_brand = db.Column(db.String)
+    available = db.Column(db.Boolean)
+    location = db.Column(db.String)
+
+    def get_id(self):
+        return self.id

@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template
 from flask_login import current_user, login_user, login_required
 from . import db
+from .models import Scooters
+
 
 main = Blueprint('main', __name__)
 
@@ -18,8 +20,8 @@ def login():
 @main.route('/rent')
 @login_required
 def rent():
-    conn = connect_db('project/db.sqlite')
-    rental_info = query_db(conn, 'select * from scooters')
+    rental_info = Scooters.query.all()
+    # rental_info = query_db(conn, 'select * from scooters')
     return render_template('rent.html', current_user=current_user, rental_info=rental_info)
 
 
@@ -37,7 +39,8 @@ def register():
 @main.route('/group')
 def group():
     return render_template('group.html')
-    
+
+
 def connect_db(fileLocation):
     conn = None
     try:
@@ -45,12 +48,9 @@ def connect_db(fileLocation):
     except:
         print('sonething went wrong')
     return conn
-    
+
+
 def query_db(conn, query):
     cur = conn.cursor()
     cur.execute(query)
     return(cur.fetchall())
-    
-
-    
-    

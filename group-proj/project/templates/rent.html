@@ -1,20 +1,31 @@
-{% extends "base.html" %} {% block content %} 
-
-Hello {{current_user.name}}, would you like to rent a scooter? 
+{% extends "base.html" %} {% block content %} Hello {{current_user.name}}, would
+you like to rent a scooter?
 
 <hr />
-<div id="buttons"><a href="#" id="yes_button" onclick="displayRentalForm()"><button>Yes</button></a> <a href="/"><button>Not right now</button></a></div>
+<div id="buttons">
+  <a href="#" id="yes_button" onclick="displayRentalForm()"
+    ><button>Yes</button></a
+  >
+  <a href="/"><button>Not right now</button></a>
+</div>
 
-<form action="#" id="rental_form" method="post" name="rental_form" style="display:none">
-
-	<p>{{rental_info}}</p>
-
+<form
+  action="#"
+  id="rental_form"
+  method="post"
+  name="rental_form"
+  style="display: none"
+>
+  <p>
+    {% for rentals in rental_info %} {{rentals.scooter_brand}}<br />
+    {%endfor%}
+  </p>
 </form>
 
 <script type="text/javascript">
-function displayRentalForm(){
-    $("#rental_form").css("display","block");
-    }
+  function displayRentalForm() {
+    $("#rental_form").css("display", "block");
+  }
 </script>
 
 {% endblock %}
