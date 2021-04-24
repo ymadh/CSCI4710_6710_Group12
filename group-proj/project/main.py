@@ -18,7 +18,9 @@ def login():
 @main.route('/rent')
 @login_required
 def rent():
-    return render_template('rent.html', current_user=current_user)
+    conn = connect_db('project/db.sqlite')
+    rental_info = query_db(conn, 'select * from scooters')
+    return render_template('rent.html', current_user=current_user, rental_info=rental_info)
 
 
 @main.route('/history')
@@ -35,3 +37,20 @@ def register():
 @main.route('/group')
 def group():
     return render_template('group.html')
+    
+def connect_db(fileLocation):
+    conn = None
+    try:
+        conn = sqlite3.connect(project/db.sqlite)
+    except:
+        print('sonething went wrong')
+    return conn
+    
+def query_db(conn, query):
+    cur = conn.cursor()
+    cur.execute(query)
+    return(cur.fetchall())
+    
+
+    
+    
