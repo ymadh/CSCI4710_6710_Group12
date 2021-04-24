@@ -3,14 +3,13 @@ you like to rent a scooter?
 
 <hr />
 <div id="buttons">
-  <a href="#" id="yes_button" onclick="displayRentalForm()"
-    ><button>Yes</button></a
-  >
-  <a href="/"><button>Not right now</button></a>
+  <button type="button" id="yes_button" class="btn btn-primary" onClick="displayRentalForm()">
+    Yes
+  </button>
+  <button type="button" class="btn btn-primary" onClick="navigateAway()">Not right now</button></a>
 </div>
 
 <form
-  action="#"
   id="rental_form"
   method="post"
   name="rental_form"
@@ -20,12 +19,25 @@ you like to rent a scooter?
     {% for rentals in rental_info %} {{rentals.scooter_brand}}<br />
     {%endfor%}
   </p>
+  <input type="submit" value="Submit" class="btn btn-primary">
+
 </form>
 
 <script type="text/javascript">
   function displayRentalForm() {
     $("#rental_form").css("display", "block");
   }
+  function navigateAway() {
+    $("#rental_form").css("display", "block");
+  }
+
+  
+  // form submit
+  $("#rental_form").submit((evt) => {
+    evt.preventDefault();
+      console.log('form submit');
+  });
+
 </script>
 
 {% endblock %}

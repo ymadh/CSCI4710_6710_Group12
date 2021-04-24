@@ -24,4 +24,4 @@ class Scooters(db.Model):
     location = db.Column(db.String)
 
     def get_id(self):
-        return self.id
+        return self.scooter_id
