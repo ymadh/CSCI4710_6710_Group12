@@ -8,6 +8,21 @@ html {
   }
 }
 
+nav a {
+  margin-left: 5px;
+}
+
+a {
+  color: #000000;
+  text-decoration: none;
+}
+a:hover {
+  color: #24d000;
+}
+
+h5 {
+  color: #24d000;
+}
 .container {
   max-width: 960px;
 }
