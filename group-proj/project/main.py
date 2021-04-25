@@ -7,9 +7,39 @@ from .models import Scooters
 from .models import Renters
 from .models import History
 from .models import User
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 main = Blueprint('main', __name__)
+
+
+@main.route('/init')
+def init():
+    # create data
+    new_user = User(email='test@test.com', name='Test User',
+                    password=generate_password_hash('test', method='sha256'), is_active=1)
+
+    # add the new user to the database
+    db.session.add(new_user)
+
+    # create scooters
+    scooter1 = Scooters(scooter_brand='Chili', available=True, location='A')
+    scooter2 = Scooters(scooter_brand='Lime', available=True, location='A')
+    scooter3 = Scooters(scooter_brand='Mango', available=True, location='B')
+    scooter4 = Scooters(scooter_brand='Suzuki', available=True, location='B')
+    scooter5 = Scooters(scooter_brand='Vespa', available=True, location='C')
+    scooter6 = Scooters(scooter_brand='Piaggo', available=True, location='C')
+    scooter7 = Scooters(scooter_brand='Aprilia', available=True, location='D')
+    db.session.add(scooter1)
+    db.session.add(scooter2)
+    db.session.add(scooter3)
+    db.session.add(scooter4)
+    db.session.add(scooter5)
+    db.session.add(scooter6)
+    db.session.add(scooter7)
+
+    db.session.commit()
+    return redirect('/')
 
 
 @main.route('/')
