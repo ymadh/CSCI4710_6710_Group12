@@ -39,6 +39,7 @@ class History(db.Model):
     scooter_id = db.Column(db.String)
     name = db.Column(db.String)
     returned = db.Column(db.Boolean)
+    rental_num = db.Column(db.Integer)
 
     def get_id(self):
         return self.user_id

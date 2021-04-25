@@ -12,13 +12,19 @@ you like to rent a scooter?
 <form
   id="rental_form"
   method="post"
+  action="/reserve"
   name="rental_form"
   style="display: none"
 >
-  <p>
-    {% for rentals in rental_info %} {{rentals.scooter_brand}} {{rentals.available}}<br />
-    {%endfor%}
-  </p>
+  <div>
+
+    {% for rentals in rental_info %}
+     {% set rentalloop = loop %}
+  <input type="radio" id="{{loop.index}}" name="choice" value="{{rentals.scooter_id}}">
+  <label for="{{loop.index}}">{{rentals.scooter_brand}}, Location: {{rentals.location}}</label>
+  <br />
+  {%endfor%}
+  </div>
   <input type="submit" value="Submit" class="btn btn-primary">
 
 </form>

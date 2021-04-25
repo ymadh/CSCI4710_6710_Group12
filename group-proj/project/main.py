@@ -1,10 +1,11 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, redirect
 from flask_login import current_user, login_user, login_required
-#from WTForms import Radiofield
+from sqlalchemy import func, insert, update
 from . import db
 from .models import Scooters
 from .models import Renters
 from .models import History
+from .models import User
 
 
 main = Blueprint('main', __name__)
@@ -23,8 +24,7 @@ def login():
 @main.route('/rent')
 @login_required
 def rent():
-    rental_info = Scooters.query.filter_by(available=True).all()
-    #radioFields = RadioField('Available Scooters', choices=[(rental_info)])  
+    rental_info = Scooters.query.filter_by(available=True).all() 
 
     return render_template('rent.html', current_user=current_user, rental_info=rental_info)
 
@@ -45,16 +45,16 @@ def group():
     return render_template('group.html')
 
 
-def connect_db(fileLocation):
-    conn = None
-    try:
-        conn = sqlite3.connect(project/db.sqlite)
-    except:
-        print('Something went wrong. Please try again.')
-    return conn
+@main.route('/reserve')
+@login_required
+def reserve():
+    user = User.query.filter_by(is_active=1).first()
+    if History.query.filter_by(user_id=user.id) == None:
+        rental_no = History.query(func.max('rental_num')filter_by(user_id=user.id)).first() + 1
+    else:
+        rental_no = 1
+    insert(History).values(user_id=user.id, scooter_id=request.form['id'], name=user.name, returned=false, rental_num=rental_no)
+    update(Scooters).where(scooter_id == request.form['id']).values(available=False)
+    db.session.commit()
 
-
-def query_db(conn, query):
-    cur = conn.cursor()
-    cur.execute(query)
-    return(cur.fetchall())
+    return render_template('history.html')

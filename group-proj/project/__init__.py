@@ -1,5 +1,4 @@
 from flask import Flask
-#from WTForms import Radiofield
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
