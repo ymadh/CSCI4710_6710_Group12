@@ -1,7 +1,10 @@
 from flask import Blueprint, render_template
 from flask_login import current_user, login_user, login_required
+#from WTForms import Radiofield
 from . import db
 from .models import Scooters
+from .models import Renters
+from .models import History
 
 
 main = Blueprint('main', __name__)
@@ -20,8 +23,9 @@ def login():
 @main.route('/rent')
 @login_required
 def rent():
-    rental_info = Scooters.query.all()
-    # rental_info = query_db(conn, 'select * from scooters')
+    rental_info = Scooters.query.filter_by(available=True).all()
+    #radioFields = RadioField('Available Scooters', choices=[(rental_info)])  
+
     return render_template('rent.html', current_user=current_user, rental_info=rental_info)
 
 

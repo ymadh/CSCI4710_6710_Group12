@@ -1,4 +1,5 @@
 from flask import Flask
+#from WTForms import Radiofield
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
@@ -20,6 +21,9 @@ def create_app():
     login_manager.login_view = 'main.login'
     login_manager.init_app(app)
     from .models import User
+    #from .models import Scooters
+    #from .models import Renters
+    #from .models import History
 
     @ login_manager.user_loader
     def load_user(id):

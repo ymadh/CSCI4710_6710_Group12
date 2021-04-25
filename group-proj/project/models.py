@@ -25,3 +25,20 @@ class Scooters(db.Model):
 
     def get_id(self):
         return self.scooter_id
+ 
+class Renters(db.Model):       
+    user_id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+    currently_using = db.Column(db.Boolean)
+
+    def get_id(self):
+        return self.user_id
+        
+class History(db.Model):       
+    user_id = db.Column(db.Integer, primary_key=True)
+    scooter_id = db.Column(db.String)
+    name = db.Column(db.String)
+    returned = db.Column(db.Boolean)
+
+    def get_id(self):
+        return self.user_id

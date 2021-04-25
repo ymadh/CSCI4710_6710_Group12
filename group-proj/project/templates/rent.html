@@ -6,7 +6,7 @@ you like to rent a scooter?
   <button type="button" id="yes_button" class="btn btn-primary" onClick="displayRentalForm()">
     Yes
   </button>
-  <button type="button" class="btn btn-primary" onClick="navigateAway()">Not right now</button></a>
+  <a href="/"><button type="button" class="btn btn-primary" onClick="navigateAway()">Not right now</button></a>
 </div>
 
 <form
@@ -16,7 +16,7 @@ you like to rent a scooter?
   style="display: none"
 >
   <p>
-    {% for rentals in rental_info %} {{rentals.scooter_brand}}<br />
+    {% for rentals in rental_info %} {{rentals.scooter_brand}} {{rentals.available}}<br />
     {%endfor%}
   </p>
   <input type="submit" value="Submit" class="btn btn-primary">
@@ -28,7 +28,7 @@ you like to rent a scooter?
     $("#rental_form").css("display", "block");
   }
   function navigateAway() {
-    $("#rental_form").css("display", "block");
+    $("#rental_form").css("display", "none");
   }
 
   
