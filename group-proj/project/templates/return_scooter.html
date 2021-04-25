@@ -1,0 +1,43 @@
+{% extends "base.html" %} {% block content %} Hello {{current_user.name}}, would
+you like to return a scooter?
+
+<hr />
+<div id="buttons">
+  <button type="button" id="yes_button" class="btn btn-primary" onClick="displayRentalForm()">
+    Yes
+  </button>
+  <button type="button" id="no_button" class="btn btn-primary" onClick="navigateAway()">
+    Not right now
+  </button></a>
+</div>
+
+<form
+  id="return_form"
+  method="post"
+  name="rental_form"
+  style="display: none"
+>
+  <p>
+    {% for returns in return_info %} {{returns.scooter_brand}}<br />
+    {%endfor%}
+  </p>
+  <input type="submit" value="Submit" class="btn btn-primary">
+
+</form>
+
+<script type="text/javascript">
+  function displayRentalForm() {
+    $("#return_form").css("display", "block");
+  }
+  function navigateAway() {
+    $("#return_form").css("display", "block");
+  }
+
+  // form submit
+  $("#return_form").submit((evt) => {
+    evt.preventDefault();
+      console.log('form submit');
+  });
+</script>
+
+{% endblock %}

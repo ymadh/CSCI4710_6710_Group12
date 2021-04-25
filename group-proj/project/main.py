@@ -28,6 +28,12 @@ def rent():
 
     return render_template('rent.html', current_user=current_user, rental_info=rental_info)
 
+@main.route('/return_scooter')
+@login_required
+def return_scooter():
+    return_info = History.query.filter_by(returned=False).all()
+    return render_template('return_scooter.html', current_user=current_user, return_info=return_info)
+
 
 @main.route('/history')
 @login_required
