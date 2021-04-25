@@ -1,12 +1,21 @@
-{% extends "base.html" %} {% block content %} Hello {{current_user.name}}, would
-you like to rent a scooter?
+{% extends "base.html" %} {% block content %}
 
 <hr />
 <div id="buttons">
-  <button type="button" id="yes_button" class="btn btn-primary" onClick="displayRentalForm()">
+  <div>Hello {{current_user.name}}, would you like to rent a scooter?</div>
+  <button
+    type="button"
+    id="yes_button"
+    class="btn btn-primary"
+    onClick="displayRentalForm()"
+  >
     Yes
   </button>
-  <a href="/"><button type="button" class="btn btn-primary" onClick="navigateAway()">Not right now</button></a>
+  <a href="/"
+    ><button type="button" class="btn btn-primary" onClick="navigateAway()">
+      Not right now
+    </button></a
+  >
 </div>
 
 <form
@@ -17,33 +26,31 @@ you like to rent a scooter?
   style="display: none"
 >
   <div>
+    {% for rentals in rental_info %} {% set rentalloop = loop %}
+    <input
+      type="radio"
+      id="{{loop.index}}"
+      name="choice"
+      value="{{rentals.scooter_id}}"
+    />
+    <label for="{{loop.index}}"
+      >{{rentals.scooter_brand}}, Location: {{rentals.location}}</label
+    >
 
-    {% for rentals in rental_info %}
-     {% set rentalloop = loop %}
-  <input type="radio" id="{{loop.index}}" name="choice" value="{{rentals.scooter_id}}">
-  <label for="{{loop.index}}">{{rentals.scooter_brand}}, Location: {{rentals.location}}</label>
-  <br />
-  {%endfor%}
+    <br />
+    {%endfor%}
   </div>
-  <input type="submit" value="Submit" class="btn btn-primary">
-
+  <input type="submit" value="Submit" class="btn btn-primary" />
 </form>
 
 <script type="text/javascript">
   function displayRentalForm() {
     $("#rental_form").css("display", "block");
+    $("#buttons").hide();
   }
   function navigateAway() {
     $("#rental_form").css("display", "none");
   }
-
-  
-  // form submit
-  $("#rental_form").submit((evt) => {
-    evt.preventDefault();
-      console.log('form submit');
-  });
-
 </script>
 
 {% endblock %}

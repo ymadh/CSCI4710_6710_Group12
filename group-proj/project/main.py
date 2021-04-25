@@ -25,9 +25,10 @@ def login():
 @main.route('/rent')
 @login_required
 def rent():
-    rental_info = Scooters.query.filter_by(available=True).all() 
+    rental_info = Scooters.query.filter_by(available=True).all()
 
     return render_template('rent.html', current_user=current_user, rental_info=rental_info)
+
 
 @main.route('/return_scooter')
 @login_required
@@ -39,9 +40,7 @@ def return_scooter():
 @main.route('/history')
 @login_required
 def history():
-    current_user = User.query.filter_by(is_active=1).first()
-    print(current_user.id)
-    history_info = History.query.filter_by(user_id=current_user.id)
+    history_info = History.query.filter_by(user_id=current_user.id).all()
     return render_template('history.html', current_user=current_user, history_info=history_info)
 
 
@@ -55,16 +54,40 @@ def group():
     return render_template('group.html')
 
 
-@main.route('/reserve')
+@main.route('/reserve', methods=['POST'])
 @login_required
 def reserve():
-    user = User.query.filter_by(is_active=1).first()
-    if History.query.filter_by(user_id=user.id) == None:
-        rental_no = History.query(func.max('rental_num').filter_by(user_id=user.id)).first() + 1
-    else:
-        rental_no = 1
-    insert(History).values(user_id=user.id, scooter_id=request.form['id'], name=user.name, returned=false, rental_num=rental_no)
-    update(Scooters).where(scooter_id == request.form['id']).values(available=False)
+
+    # make sure there is a scooter chosen
+    choosen_scooter = request.form['choice']
+
+    scooter = Scooters.query.filter_by(scooter_id=choosen_scooter).first()
+
+    if choosen_scooter is None or scooter is None:
+        return redirect("/rent")
+
+    # assume this is their first rental
+    # get a history and set the rental number to an incremented value
+    rental_no = 1
+    if History.query.filter_by(user_id=current_user.id) == None:
+        rental_no = History.query(
+            func.max('rental_num').filter_by(user_id=current_user.id)).first() + 1
+
+    # insert a new history record
+    newHistory = History(user_id=current_user.id,
+                         scooter_id=choosen_scooter,
+                         name=current_user.name,
+                         returned=False,
+                         rental_num=rental_no
+                         )
+
+    # mark the scooter as unavailable (first is required here)
+    updatedScooter = Scooters.query.filter_by(
+        scooter_id=choosen_scooter).first()
+    updatedScooter.available = False
+
+    # attach the new
+    db.session.add(newHistory)
     db.session.commit()
 
-    return render_template('history.html')
+    return render_template('reserved.html', scooter_name=scooter.scooter_brand)
