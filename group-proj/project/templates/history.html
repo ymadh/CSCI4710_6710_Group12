@@ -1,1 +1,16 @@
-{% extends "base.html" %} {% block content %} history {% endblock %}
+{% extends "base.html" %} {% block content %}
+
+<form
+  id="history_form"
+  method="post"
+  name="history_form"
+  style="display: none"
+>
+  <p>
+    {% for history in history_info %} {{history.user_id}}<br />
+    {%endfor%}
+  </p>
+
+</form>
+
+{% endblock %}

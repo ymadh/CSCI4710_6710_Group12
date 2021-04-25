@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template
 from flask_login import current_user, login_user, login_required
 from . import db
+from .models import User
 from .models import Scooters
 from .models import Renters
 from .models import History
@@ -37,7 +38,10 @@ def return_scooter():
 @main.route('/history')
 @login_required
 def history():
-    return render_template('history.html')
+    current_user = User.query.filter_by(is_active=1).first()
+    print(current_user.id)
+    history_info = History.query.filter_by(user_id=current_user.id)
+    return render_template('history.html', current_user=current_user, history_info=history_info)
 
 
 @main.route('/register')
