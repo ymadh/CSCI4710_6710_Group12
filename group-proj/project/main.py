@@ -46,7 +46,7 @@ def connect_db(fileLocation):
     try:
         conn = sqlite3.connect(project/db.sqlite)
     except:
-        print('sonething went wrong')
+        print('Something went wrong. Please try again.')
     return conn
 
 
