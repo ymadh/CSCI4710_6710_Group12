@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template
 from flask_login import current_user, login_user, login_required
-#from WTForms import Radiofield
 from . import db
 from .models import Scooters
 from .models import Renters
@@ -31,7 +30,7 @@ def rent():
 @main.route('/return_scooter')
 @login_required
 def return_scooter():
-    return_info = Scooters.query.filter_by(available=True).all()
+    return_info = History.query.filter_by(returned=False).all()
     return render_template('return_scooter.html', current_user=current_user, return_info=return_info)
 
 
