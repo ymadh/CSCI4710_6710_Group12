@@ -19,7 +19,12 @@ a {
 a:hover {
   color: #24d000;
 }
-
+.active {
+  color: #24d000;
+}
+nav a {
+  margin-left: 10px;
+}
 h5 {
   color: #24d000;
 }
@@ -44,4 +49,13 @@ h5 {
 
 .box-shadow {
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+}
+
+#rental-header {
+  display: none;
+}
+
+.carousel-caption p,
+h6 {
+  font-size: 18px;
 }

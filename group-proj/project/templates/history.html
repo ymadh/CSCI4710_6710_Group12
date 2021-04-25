@@ -1,10 +1,11 @@
+{% set active_page = "history" %}
 {% extends "base.html" %} {% block content %}
 
 <form id="history_form" method="post" name="history_form">
   
     <!-- make this a table -->
     {% for history in history_info %} 
-        {{history.user_id}}<br />
+        {{history.rent_date}} {{history.return_date}}<br />
     {%endfor%}
   </p>
 </form>

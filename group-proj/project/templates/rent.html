@@ -1,56 +1,60 @@
-{% extends "base.html" %} {% block content %}
-
-<hr />
-<div id="buttons">
-  <div>Hello {{current_user.name}}, would you like to rent a scooter?</div>
-  <button
-    type="button"
-    id="yes_button"
-    class="btn btn-primary"
-    onClick="displayRentalForm()"
-  >
-    Yes
-  </button>
-  <a href="/"
-    ><button type="button" class="btn btn-primary" onClick="navigateAway()">
-      Not right now
-    </button></a
-  >
-</div>
-
-<form
-  id="rental_form"
-  method="post"
-  action="/reserve"
-  name="rental_form"
-  style="display: none"
->
-  <div>
-    {% for rentals in rental_info %} {% set rentalloop = loop %}
-    <input
-      type="radio"
-      id="{{loop.index}}"
-      name="choice"
-      value="{{rentals.scooter_id}}"
-    />
-    <label for="{{loop.index}}"
-      >{{rentals.scooter_brand}}, Location: {{rentals.location}}</label
+{% set active_page = "rent" %} {% extends "base.html" %} {% block content %}
+<div class="mt-5">
+  <div id="buttons">
+    <div>Hello {{current_user.name}}, would you like to rent a scooter?</div>
+    <button
+      type="button"
+      id="yes_button"
+      class="btn btn-primary"
+      onClick="displayRentalForm()"
     >
-
-    <br />
-    {%endfor%}
+      Yes
+    </button>
+    <a href="/"
+      ><button type="button" class="btn btn-primary" onClick="navigateAway()">
+        Not right now
+      </button></a
+    >
   </div>
-  <input type="submit" value="Submit" class="btn btn-primary" />
-</form>
+  <div id="rental-header">
+    <h4>Choose your scooter and location</h4>
+  </div>
+  <hr />
+
+  <form
+    id="rental_form"
+    method="post"
+    action="/reserve"
+    name="rental_form"
+    style="display: none"
+  >
+    <div>
+      {% for rentals in rental_info %} {% set rentalloop = loop %}
+      <input
+        type="radio"
+        id="{{loop.index}}"
+        name="choice"
+        value="{{rentals.scooter_id}}"
+      />
+      <label for="{{loop.index}}"
+        >{{rentals.scooter_brand}}, Location: {{rentals.location}}</label
+      >
+
+      <br />
+      {%endfor%}
+    </div>
+    <input type="submit" value="Submit" class="btn btn-primary" />
+  </form>
+</div>
 
 <script type="text/javascript">
   function displayRentalForm() {
     $("#rental_form").css("display", "block");
     $("#buttons").hide();
+    $("#rental-header").show();
   }
   function navigateAway() {
     $("#rental_form").css("display", "none");
   }
 </script>
-
 {% endblock %}
