@@ -42,7 +42,7 @@ class History(db.Model):
     scooter_id = db.Column(db.String)
     rental_num = db.Column(db.Integer)
     rent_date = db.Column(db.DateTime, server_default=db.func.now())
-    return_date = db.Column(db.DateTime, server_default=db.func.now())
+    return_date = db.Column(db.DateTime, nullable=True)
 
     def get_id(self):
         return self.id

@@ -8,6 +8,7 @@ from .models import Renters
 from .models import History
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
+import datetime
 
 
 main = Blueprint('main', __name__)
@@ -63,8 +64,15 @@ def rent():
 @main.route('/return_scooter')
 @login_required
 def return_scooter():
-    return_info = History.query.filter_by(returned=False).all()
-    return render_template('return_scooter.html', current_user=current_user, return_info=return_info)
+    # hackish way b/c null isn't working
+    t = datetime.datetime(2001, 1, 1)
+
+    return_info = History.query.filter_by(
+        user_id=current_user.id, return_date=t).first()
+
+    scooter_info = Scooters.query.filter_by(
+        scooter_id=return_info.scooter_id).first()
+    return render_template('return_scooter.html', current_user=current_user, return_info=return_info, scooter_info=scooter_info)
 
 
 @main.route('/history')
@@ -104,11 +112,12 @@ def reserve():
             func.max('rental_num').filter_by(user_id=current_user.id)).first() + 1
 
     # insert a new history record
+    t = datetime.datetime(2001, 1, 1)
+
     newHistory = History(user_id=current_user.id,
                          scooter_id=choosen_scooter,
-                         name=current_user.name,
-                         returned=False,
-                         rental_num=rental_no
+                         rental_num=rental_no,
+                         return_date=t
                          )
 
     # mark the scooter as unavailable (first is required here)
