@@ -60,7 +60,7 @@ def group():
 def reserve():
     user = User.query.filter_by(is_active=1).first()
     if History.query.filter_by(user_id=user.id) == None:
-        rental_no = History.query(func.max('rental_num')filter_by(user_id=user.id)).first() + 1
+        rental_no = History.query(func.max('rental_num').filter_by(user_id=user.id)).first() + 1
     else:
         rental_no = 1
     insert(History).values(user_id=user.id, scooter_id=request.form['id'], name=user.name, returned=false, rental_num=rental_no)
