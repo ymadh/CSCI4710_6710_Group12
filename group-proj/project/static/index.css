@@ -15,12 +15,13 @@ a {
 a:hover {
   color: #24d000;
 }
-.active {
+.active,
+h3 {
   color: #24d000;
 }
 nav a {
-  margin-left: 6%;
-  font-size: 1.4em;
+  margin-left: 15px;
+  font-size: 18px;
 }
 h5 {
   color: #24d000;
@@ -48,7 +49,8 @@ h5 {
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
 }
 
-.btn, .btn-primary {
+.btn,
+.btn-primary {
   background-color: #24d000;
   border-color: #24d000;
 }
@@ -57,13 +59,14 @@ h5 {
   display: none;
 }
 
+.carousel-caption {
+  background-color: white;
+  opacity: 0.7;
+}
 .carousel-caption p,
 h6 {
   font-size: 24px;
-  font-weight: bold;
-  color: blue;
-  background-color: white;
-  opacity: .7;
+  color: #181818;
 }
 
 .center {
@@ -76,39 +79,41 @@ table {
   width: 100%;
 }
 
-td, th {
+td,
+th {
   border: 1px solid #dddddd;
   text-align: center;
   padding: 5px;
 }
 
 tr:nth-child(even) {
-  background-color: #24d000;
+  background-color: #c9d4cd;
 }
 
-h4 {
-  font-size: 28px;
-  font-weight: bold;
+h1 {
+  font-size: 24px;
   color: #000b6f;
 }
 
-.carousel-control-next-icon, .carousel-control-prev-icon {
-    background-size: 0%, 0%;
-    border: none;
-    background-image: none;
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  background-size: 0%, 0%;
+  border: none;
+  background-image: none;
 }
 .carousel-control-next-icon:after {
-    content: '>';
-    font-size: 55px;
-    color: #000b6f;
+  content: ">";
+  font-size: 55px;
+  color: #000b6f;
 }
 .carousel-control-prev-icon:after {
-    content: '<';
-    font-size: 55px;
-    color: #000b6f;   
+  content: "<";
+  font-size: 55px;
+  color: #000b6f;
 }
 
-center, label {
-    color: #000b6f;
-    font-size: 1.5em;
+center,
+label {
+  color: #000b6f;
+  font-size: 1.5em;
 }
