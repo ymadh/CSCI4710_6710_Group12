@@ -5,8 +5,9 @@ Hello {{current_user.name}}, would you like to return a scooter?
 
 <!-- todo: on submit mark the return date in the history table to now -->
 <form id="return_form" method="post" name="return_form">
-  <p>{{return_info.scooter_id}} - {{scooter_info.scooter_brand}}<br /></p>
-  <input type="submit" value="Submit" class="btn btn-primary" />
+  <h6><b>You are currently renting:</b></h6>
+  <input type="radio"> {{return_info.scooter_id}} - {{scooter_info.scooter_brand}} </input><br /><br />
+  <input type="submit" value="Return" class="btn btn-primary" />
 </form>
 
 <script type="text/javascript"></script>
