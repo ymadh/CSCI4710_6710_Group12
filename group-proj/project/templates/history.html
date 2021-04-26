@@ -1,12 +1,36 @@
 {% set active_page = "history" %}
 {% extends "base.html" %} {% block content %}
 
+<style>
+  table {
+  font-family: arial;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 5px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
 <form id="history_form" method="post" name="history_form">
-  
-    <!-- make this a table -->
-    {% for history in history_info %} 
-        {{history.rent_date}} {{history.return_date}}<br />
-    {%endfor%}
+  <table>
+    <tr>
+      <th>Date Rented</th>
+      <th>Date Returned</th>
+    </tr>
+    {% for history in history_info %}
+      <tr>
+        <td>{{history.rent_date}}</td>
+        <td>{{history.return_date}}</td>
+      </tr>
+    {% endfor %}
+  </table>
   </p>
 </form>
 
