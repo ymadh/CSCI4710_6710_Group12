@@ -1,15 +1,28 @@
 {% set active_page = "return" %} {% extends "base.html" %} {% block content %}
-Hello {{current_user.name}}, would you like to return a scooter?
 
-<hr />
+{% if already_renting == 'Returning' %}
 
-<!-- todo: on submit mark the return date in the history table to now -->
-<form id="return_form" method="post" name="return_form">
-  <h6><b>You are currently renting:</b></h6>
-  <input type="radio"> {{return_info.scooter_id}} - {{scooter_info.scooter_brand}} </input><br /><br />
-  <input type="submit" value="Return" class="btn btn-primary" />
-</form>
 
-<script type="text/javascript"></script>
+Thank you {{current_user.name}} for returning your scooter!
+
+
+{% elif already_renting == 'NotRenting' %}
+
+
+{{current_user.name}} you have not rented a scooter yet.
+
+{% else %}
+	Hello {{current_user.name}}, would you like to return a scooter?
+
+	<hr />
+
+
+	<!-- todo: on submit mark the return date in the history table to now -->
+	<form id="return_form" method="POST" name="return_form" action="{{ url_for('main.returnAPI') }}">
+	  <h6><b>You are currently renting:</b></h6>
+	  <input type="radio"> {{return_info.scooter_id}} - {{scooter_info.scooter_brand}} </input><br /><br />
+	  <input type="submit" value="Return" class="btn btn-primary" />
+	</form>
+{% endif %}
 
 {% endblock %}
