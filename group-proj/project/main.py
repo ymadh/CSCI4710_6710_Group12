@@ -69,7 +69,7 @@ def rent():
 @login_required
 def return_scooter():
     # hackish way b/c null isn't working
-    #t = datetime.datetime(2001, 1, 1)
+    t = datetime.datetime.now()
 
     if History.query.filter_by(
         user_id=current_user.id, return_date=None).first() != None:
@@ -138,7 +138,7 @@ def reserve():
             func.max('rental_num').filter_by(user_id=current_user.id)).first() + 1
 
     # insert a new history record
-    #t = datetime.datetime(2001, 1, 1)
+    t = datetime.datetime.now()
 
     newHistory = History(user_id=current_user.id,
                          scooter_id=choosen_scooter,
