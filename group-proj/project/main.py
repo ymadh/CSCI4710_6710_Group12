@@ -117,7 +117,7 @@ def reserve():
     newHistory = History(user_id=current_user.id,
                          scooter_id=choosen_scooter,
                          rental_num=rental_no,
-                         return_date=t
+                         rent_date=t
                          )
 
     # mark the scooter as unavailable (first is required here)

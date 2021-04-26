@@ -24,7 +24,7 @@ tr:nth-child(even) {
       <th>Date Rented</th>
       <th>Date Returned</th>
     </tr>
-    {% for history in history_info %}
+    {% for history in history_info|sort(attribute='rent_date', reverse=True) %}
       <tr>
         <td>{{history.rent_date}}</td>
         <td>{{history.return_date}}</td>
