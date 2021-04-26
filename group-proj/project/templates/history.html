@@ -12,7 +12,7 @@
       <tr>
         <td>{{history.scooter_id}}</td>
         <td>{{history.rent_date.strftime('%Y-%m-%d')}}</td>
-        <td>{% if history.return_date.strftime('%Y-%m-%d') == '2001-01-01' %}
+        <td>{% if history.return_date == None or history.return_date.strftime('%Y-%m-%d') == '2001-01-01' %}
           Not returned
           {%else%}
           {{history.return_date.strftime('%Y-%m-%d')}}
