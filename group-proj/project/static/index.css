@@ -8,10 +8,6 @@ html {
   }
 }
 
-nav a {
-  margin-left: 5px;
-}
-
 a {
   color: #000000;
   text-decoration: none;
@@ -23,7 +19,8 @@ a:hover {
   color: #24d000;
 }
 nav a {
-  margin-left: 10px;
+  margin-left: 6%;
+  font-size: 1.4em;
 }
 h5 {
   color: #24d000;
@@ -62,7 +59,11 @@ h5 {
 
 .carousel-caption p,
 h6 {
-  font-size: 18px;
+  font-size: 24px;
+  font-weight: bold;
+  color: blue;
+  background-color: white;
+  opacity: .7;
 }
 
 .center {
@@ -83,4 +84,31 @@ td, th {
 
 tr:nth-child(even) {
   background-color: #24d000;
+}
+
+h4 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #000b6f;
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
+    background-size: 0%, 0%;
+    border: none;
+    background-image: none;
+}
+.carousel-control-next-icon:after {
+    content: '>';
+    font-size: 55px;
+    color: #000b6f;
+}
+.carousel-control-prev-icon:after {
+    content: '<';
+    font-size: 55px;
+    color: #000b6f;   
+}
+
+center, label {
+    color: #000b6f;
+    font-size: 1.5em;
 }

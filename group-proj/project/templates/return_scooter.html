@@ -3,16 +3,16 @@
 {% if already_renting == 'Returning' %}
 
 
-Thank you {{current_user.name}} for returning your scooter!
+<center>Thank you for returning your scooter {{current_user.name}}!</center>
 
 
 {% elif already_renting == 'NotRenting' %}
 
 
-{{current_user.name}} you have not rented a scooter yet.
+<center>{{current_user.name}} you have not rented a scooter yet.</center>
 
 {% else %}
-	Hello {{current_user.name}}, would you like to return a scooter?
+	<center>Hello {{current_user.name}}, would you like to return a scooter?</center>
 
 	<hr />
 
