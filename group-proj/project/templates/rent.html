@@ -1,7 +1,14 @@
 {% set active_page = "rent" %} {% extends "base.html" %} {% block content %}
 <div class="mt-5">
   <div id="buttons">
-    <div>Hello {{current_user.name}}, would you like to rent a scooter?</div>
+
+    {% if current_status > 0 %}
+    <p><center>You currently have a scooter reserved. Please return it to proceed.</center></p>
+    {% else %}
+
+    <div><center>Hello {{current_user.name}}, would you like to rent a scooter?</center></div>
+
+
     <button
       type="button"
       id="yes_button"
@@ -15,6 +22,8 @@
         Not right now
       </button></a
     >
+    {% endif %}
+  
   </div>
   <div id="rental-header">
     <h4>Choose your scooter and location</h4>

@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect
 from flask_login import current_user, login_user, login_required
-from sqlalchemy import func, insert, update
+from sqlalchemy import func, insert, update, desc, and_
 from . import db
 from .models import User
 from .models import Scooters
@@ -57,8 +57,11 @@ def login():
 @login_required
 def rent():
     rental_info = Scooters.query.filter_by(available=True).all()
+    
+    current_status = History.query.filter_by(user_id=current_user.id, return_date=None).count()
+    print(current_status)
 
-    return render_template('rent.html', current_user=current_user, rental_info=rental_info)
+    return render_template('rent.html', current_user=current_user, rental_info=rental_info, current_status=current_status)
 
 
 @main.route('/return_scooter')

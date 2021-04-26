@@ -51,6 +51,11 @@ h5 {
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
 }
 
+.btn, .btn-primary {
+  background-color: #24d000;
+  border-color: #24d000;
+}
+
 #rental-header {
   display: none;
 }
@@ -58,4 +63,24 @@ h5 {
 .carousel-caption p,
 h6 {
   font-size: 18px;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table {
+  font-family: arial;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 5px;
+}
+
+tr:nth-child(even) {
+  background-color: #24d000;
 }

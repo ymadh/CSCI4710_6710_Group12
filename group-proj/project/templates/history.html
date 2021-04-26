@@ -1,31 +1,16 @@
 {% set active_page = "history" %}
 {% extends "base.html" %} {% block content %}
 
-<style>
-  table {
-  font-family: arial;
-  width: 100%;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: center;
-  padding: 5px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-</style>
-
 <form id="history_form" method="post" name="history_form">
-  <table>
+  <table class="center">
     <tr>
+      <th>Scooter Number</th>
       <th>Date Rented</th>
       <th>Date Returned</th>
     </tr>
     {% for history in history_info|sort(attribute='rent_date', reverse=True) %}
       <tr>
+        <td>{{history.scooter_id}}</td>
         <td>{{history.rent_date}}</td>
         <td>{{history.return_date}}</td>
       </tr>
