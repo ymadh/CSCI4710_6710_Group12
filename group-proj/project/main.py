@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template, request, redirect, Response
 from flask_login import current_user, login_user, login_required
 from sqlalchemy import func, insert, update
 from . import db
@@ -9,6 +9,7 @@ from .models import History
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
+
 
 
 main = Blueprint('main', __name__)
@@ -65,15 +66,37 @@ def rent():
 @login_required
 def return_scooter():
     # hackish way b/c null isn't working
-    t = datetime.datetime(2001, 1, 1)
+    #t = datetime.datetime(2001, 1, 1)
 
+    if History.query.filter_by(
+        user_id=current_user.id, return_date=None).first() != None:
+
+        return_info = History.query.filter_by(
+            user_id=current_user.id, return_date=None).first()
+        
+        scooter_info = Scooters.query.filter_by(
+            scooter_id=return_info.scooter_id).first()
+  
+        return render_template('return_scooter.html', current_user=current_user, return_info=return_info, scooter_info=scooter_info, already_renting='Renting')
+    else:
+        return render_template('return_scooter.html', current_user=current_user, return_info=None, scooter_info=None, already_renting='NotRenting')
+
+@main.route('/returnAPI', methods=['POST'])
+@login_required
+def returnAPI():
     return_info = History.query.filter_by(
-        user_id=current_user.id, return_date=t).first()
+    user_id=current_user.id, return_date=None).first()
+       
+    return_info.return_date = datetime.datetime.now()
 
-    scooter_info = Scooters.query.filter_by(
+    returnedScooter = Scooters.query.filter_by(
         scooter_id=return_info.scooter_id).first()
-    return render_template('return_scooter.html', current_user=current_user, return_info=return_info, scooter_info=scooter_info)
-
+    returnedScooter.available = True
+    
+        
+    db.session.commit()
+    
+    return render_template('return_scooter.html', current_user=current_user, return_info=None, scooter_info=None, already_renting='Returning')
 
 @main.route('/history')
 @login_required
@@ -112,12 +135,12 @@ def reserve():
             func.max('rental_num').filter_by(user_id=current_user.id)).first() + 1
 
     # insert a new history record
-    t = datetime.datetime(2001, 1, 1)
+    #t = datetime.datetime(2001, 1, 1)
 
     newHistory = History(user_id=current_user.id,
                          scooter_id=choosen_scooter,
                          rental_num=rental_no,
-                         rent_date=t
+                         rent_date=datetime.datetime.now()
                          )
 
     # mark the scooter as unavailable (first is required here)
